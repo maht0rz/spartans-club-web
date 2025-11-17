@@ -1,0 +1,83 @@
+[
+  {
+    "id": "vincentkolek",
+    "name": "Vincent",
+    "tags": ["MUAY THAI"],
+    "phone": "+421 911 712 109",
+    "whatsapp": "https://wa.me/421911712109",
+    "instagramHandle": "@vincentkolek",
+    "instagramUrl": "https://instagram.com/vincentkolek",
+    "image": "/trainers/vincent.png"
+  },
+  {
+    "id": "erikhoboth",
+    "name": "Erik",
+    "tags": ["MUAY THAI"],
+    "phone": "+421 905 853 643",
+    "whatsapp": "https://wa.me/421905853643",
+    "instagramHandle": "@erikhoboth",
+    "instagramUrl": "https://instagram.com/erikhoboth",
+    "image": "/trainers/erik.png"
+  },
+  {
+    "id": "fryfajter",
+    "name": "Matúš",
+    "tags": ["BOX"],
+    "phone": "+421 911 858 000",
+    "whatsapp": "https://wa.me/421911858000",
+    "instagramHandle": "@fryfajter",
+    "instagramUrl": "https://instagram.com/fryfajter",
+    "image": "/trainers/matus.png"
+  },
+  {
+    "id": "igi.or.thai",
+    "name": "Igor",
+    "tags": ["MUAY THAI", "VIBRAČNÉ TYČE"],
+    "phone": "+421 911 319 217",
+    "whatsapp": "https://wa.me/421911319217",
+    "instagramHandle": "@igi.or.thai",
+    "instagramUrl": "https://instagram.com/igi.or.thai",
+    "image": "/trainers/igor.png"
+  },
+  {
+    "id": "alexanderdzabo92",
+    "name": "Alex",
+    "tags": ["BOX"],
+    "phone": "+421 944 401 797",
+    "whatsapp": "https://wa.me/421944401797",
+    "instagramHandle": "@alexanderdzabo92",
+    "instagramUrl": "https://instagram.com/alexanderdzabo92",
+    "image": "/trainers/alex.png"
+  },
+  {
+    "id": "senseimaxoss",
+    "name": "Max",
+    "tags": ["SEBAOBRANA PRE DETI A MLÁDEŽ"],
+    "phone": "+421 944 401",
+    "whatsapp": "https://wa.me/421944401",
+    "instagramHandle": "@senseimaxoss",
+    "instagramUrl": "https://instagram.com/senseimaxoss",
+    "image": "/trainers/max.png"
+  },
+  {
+    "id": "alexandra.coach.sk",
+    "name": "Alexandra",
+    "tags": ["SILOVO‑KONDIČNÝ TRÉNING", "THAJSKÝ BOX"],
+    "phone": "+421 949 540 020",
+    "whatsapp": "https://wa.me/421949540020",
+    "instagramHandle": "@alexandra.coach.sk",
+    "instagramUrl": "https://instagram.com/alexandra.coach.sk",
+    "image": "/trainers/alexandra.png"
+  },
+  {
+    "id": "daniel",
+    "name": "Daniel",
+    "tags": ["JU‑JITSU"],
+    "phone": "+421 905 494 823",
+    "whatsapp": "https://wa.me/421905494823",
+    "instagramHandle": "",
+    "instagramUrl": "",
+    "image": "/trainers/daniel.png"
+  }
+]
+

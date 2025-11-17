@@ -92,13 +92,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
   const navItems: Array<{ id: "top" | "way-of-life" | "sessions" | "testimonials" | "private-coaching" | "gallery" | "contact" | "about" | "shop"; labelKey: string; href: string, target?: string }> = [
     { id: "top", labelKey: "nav.home", href: "#top" },
-    { id: "way-of-life", labelKey: "nav.wayoflife", href: "#way-of-life" },
     { id: "sessions", labelKey: "nav.sessions", href: "#sessions" },
+    { id: "way-of-life", labelKey: "nav.wayoflife", href: "#way-of-life" },
     { id: "testimonials", labelKey: "nav.testimonials", href: "#testimonials" },
     { id: "private-coaching", labelKey: "nav.private", href: "#private-coaching" },
     { id: "about", labelKey: "nav.about", href: "#about" },
     { id: "gallery", labelKey: "nav.gallery", href: "#gallery" },
-    { id: "shop", labelKey: "nav.shop", href: "https://shop.spartans.sk", target: "_blank" },
+    // { id: "shop", labelKey: "nav.shop", href: "https://shop.spartans.sk", target: "_blank" },
   ];
 
   return (

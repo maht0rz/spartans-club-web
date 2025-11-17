@@ -72,7 +72,7 @@
   "session.private.badge": "1:1 alebo malá skupina",
   "session.private.time": "Podľa dohody",
   "gallery.title": "Galéria",
-  "gallery.subtitle": "Sledujte nás na Instagrame",
+  "gallery.subtitle": "Užite si fotky nižšie a pre viac obsahu sledujte náš Instagram <a>@spartansclubbratislava</a>.",
   "private.title": "Tréneri",
   "private.subtitle": "1:1 spolupráca so špecialistami na striking, grappling, kondíciu a mindset.",
   "private.card.placeholder.name": "Meno trénera",
@@ -97,15 +97,17 @@
   "about.companyLabel": "Názov klubu",
   "about.companyName": "Spartans Club Bratislava",
   "about.addressLabel": "Adresa",
-  "about.address": "Bratislava, Slovensko",
+  "about.address": "Mlynské nivy 54, 821 09 Ružinov, Bratislava, Slovensko",
   "about.phoneLabel": "Telefón",
-  "about.phone": "+421 900 000 000",
+  "about.phone": "+421 911 712 109",
   "about.emailLabel": "E‑mail",
   "about.email": "info@spartans.sk",
   "about.mapQuery": "Spartans Club Bratislava, Slovensko",
   "help.prompt": "Potrebujete s niečím pomôcť? Kliknite sem a zavolajte headcoachovi Vincentovi",
+  "sponsors.title": "Naši partneri a sponzori",
+  "sponsors.subtitle": "Ďakujeme partnerom, ktorí podporujú našu misiu a komunitu.",
   "cta.start": "Začať trénovať",
-  "cta.startNow": "Začať trénovať teraz",
+  "cta.startNow": "Kontaktuj hlavného trénera a začni trénovať",
   "heading.why": "Prečo sa pridať",
   "heading.ideal": "Ideálne pre",
   "session.vip.reasons": [
@@ -213,56 +215,16 @@
   "trainers.contactTitle": "Kontakt",
   "trainers.availability": "Flexibilný rozvrh • Rezervujte vopred",
   "trainers": {
-    "items": [
-      {
-        "name": "Vincent",
-        "tags": "Muay Thai • Nácviky • Technika",
-        "bio": "Bývalý profi zápasník Muay Thai, zameraný na presnú prácu na lapách, prácu nôh a praktické ringové rozhodovanie.",
-        "phone": "+40711111111",
-        "whatsapp": "https://wa.me/40711111111",
-        "instagram": "https://instagram.com/trainer_one"
-      },
-      {
-        "name": "Erik",
-        "tags": "Box • Obrana • Práca nôh",
-        "bio": "Špecialista na box s dôrazom na obranu, rytmus a efektívne kombinácie. Tréningy stavajú na načasovaní a rovnováhe.",
-        "phone": "+40722222222",
-        "whatsapp": "https://wa.me/40722222222",
-        "instagram": "https://instagram.com/trainer_two"
-      },
-      {
-        "name": "Matúš",
-        "tags": "Sila • Kondícia",
-        "bio": "Sila & kondícia s prepojením na atletický pohyb, mobilitu a rozumnú progresiu záťaže pre odolných a výkonných bojovníkov.",
-        "phone": "+40733333333",
-        "whatsapp": "https://wa.me/40733333333",
-        "instagram": "https://instagram.com/trainer_three"
-      },
-      {
-        "name": "Alex",
-        "tags": "K1 • Sparing • Stratégia",
-        "bio": "K1 stratég so zameraním na rozvahu v ringu, kontrolu vzdialenosti a zmysluplný sparing prenášajúci sa do zápasu.",
-        "phone": "+40744444444",
-        "whatsapp": "https://wa.me/40744444444",
-        "instagram": "https://instagram.com/trainer_four"
-      },
-      {
-        "name": "Alexandra",
-        "tags": "K1 • Sparing • Stratégia",
-        "bio": "K1 stratég so zameraním na rozvahu v ringu, kontrolu vzdialenosti a zmysluplný sparing prenášajúci sa do zápasu.",
-        "phone": "+40744444444",
-        "whatsapp": "https://wa.me/40744444444",
-        "instagram": "https://instagram.com/trainer_four"
-      },
-      {
-        "name": "Samo",
-        "tags": "K1 • Sparing • Stratégia",
-        "bio": "K1 stratég so zameraním na rozvahu v ringu, kontrolu vzdialenosti a zmysluplný sparing prenášajúci sa do zápasu.",
-        "phone": "+40744444444",
-        "whatsapp": "https://wa.me/40744444444",
-        "instagram": "https://instagram.com/trainer_four"
-      }
-    ]
+    "bios": {
+      "vincentkolek": "Špecialista na thajský box a VIP tréningy. Individuálny prístup, dôraz na detail a pokrok každého zverenca.",
+      "erikhoboth": "Skúsený tréner thajského boxu so zápalom pre osobný rozvoj a skupinovú dynamiku.",
+      "fryfajter": "Boxer s vášňou pre techniku úderu. Pomáha zlepšiť silu aj vytrvalosť na každej úrovni.",
+      "igi.or.thai": "Tréner rôznych disciplín: thajský box, vibračné tyče aj detské kurzy. Presný a povzbudzujúci prístup.",
+      "alexanderdzabo92": "Boxerský špecialista, ktorý z vás vytiahne to najlepšie. Individuálne aj skupinové lekcie.",
+      "senseimaxoss": "Odborník na sebaobranu pre deti a mládež. Bezpečnosť a sebavedomie sú jeho hlavné ciele.",
+      "alexandra.coach.sk": "Silovo-kondičný trénerka, špecialistka na výživu, jogu a osobný rast. Komplexný rozvoj tela aj mysle.",
+      "daniel": "Tréner ju-jitsu s dôrazom na techniku a sebaobranu v priateľskej atmosfére."
+    }
   }
 }
 
