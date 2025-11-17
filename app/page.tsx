@@ -130,8 +130,18 @@ export default function HomePage() {
               <a href="#sessions">
                 <Button>{t("hero.cta.sessions")}</Button>
               </a>
+              <a href={`tel:${t("about.phone")}`}>
+                <Button variant="outline" className="inline-flex items-center gap-2">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 3.11 5.18 2 2 0 0 1 5.11 3h3a2 2 0 0 1 2 1.72c.12.86.3 1.7.54 2.5a2 2 0 0 1-.45 2.11L9 10a16 16 0 0 0 5 5l.67-1.2a2 2 0 0 1 2.11-.45c.8.24 1.64.42 2.5.54A2 2 0 0 1 22 16.92Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                  <span>{t("hero.cta.call")}</span>
+                </Button>
+              </a>
               <a href="#private-coaching">
-                <Button variant="outline">{t("hero.cta.trainers")}</Button>
+                <Button variant="ghost" className="inline-flex items-center gap-2 hover:bg-transparent">
+                  {t("hero.cta.trainers")}
+                </Button>
               </a>
             </div>
           </div>
@@ -220,58 +230,7 @@ export default function HomePage() {
         </Container>
       </section>
 
-      {/* Reasons to start Muay Thai (accordion) */}
-      <section id="way-of-life" className="py-12 scroll-mt-24">
-        <Container>
-          <div className="mt-4"></div>
-          <h2 className="font-display font-extrabold text-4xl md:text-4xl uppercase">
-            {t("reasons.title")}
-          </h2>
-          <p className="text-muted-foreground mt-1">{t("reasons.subtitle")}</p>
-          <div className="mt-10"></div>
-          {(() => {
-            const items = t("reasons.items", { returnObjects: true }) as Array<{ title: string; body: string }>;
-            const [showAll, setShowAll] = React.useState(false);
-            const visible = showAll ? items : items.slice(0, 3);
-            return (
-              <>
-                <div className="mt-3 grid grid-cols-1 md:grid-cols-3 gap-4">
-                  {visible.map((it, idx) => (
-                    <div
-                      key={idx}
-                      className="rounded-md bg-white dark:bg-black px-0 py-3"
-                    >
-                      <div className="text-base md:text-lg font-semibold text-left">{it.title}</div>
-                      <div className="mt-2 text-[15px] md:text-base leading-relaxed text-muted-foreground text-left">
-                        {it.body}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-                {items.length > 3 && (
-                  <div className="mt-3 flex justify-center">
-                    <Button
-                      variant="outline"
-                      onClick={() => setShowAll((v) => !v)}
-                      className="inline-flex items-center gap-2 bg-transparent border border-transparent shadow-none"
-                    >
-                      <span>{showAll ? t("reasons.less") : t("reasons.more")}</span>
-                      <svg
-                        className={`w-4 h-4 transition-transform ${showAll ? "rotate-180" : ""}`}
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        aria-hidden="true"
-                      >
-                        <path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-                      </svg>
-                    </Button>
-                  </div>
-                )}
-              </>
-            );
-          })()}
-        </Container>
-      </section>
+      
 
       <section
         id="sessions"
@@ -544,6 +503,59 @@ export default function HomePage() {
               </Button>
             </a>
           </div>
+        </Container>
+      </section>
+      
+      {/* Reasons to start Muay Thai (accordion) */}
+      <section id="way-of-life" className="py-12 scroll-mt-24">
+        <Container>
+          <div className="mt-4"></div>
+          <h2 className="font-display font-extrabold text-4xl md:text-4xl uppercase">
+            {t("reasons.title")}
+          </h2>
+          <p className="text-muted-foreground mt-1">{t("reasons.subtitle")}</p>
+          <div className="mt-10"></div>
+          {(() => {
+            const items = t("reasons.items", { returnObjects: true }) as Array<{ title: string; body: string }>;
+            const [showAll, setShowAll] = React.useState(false);
+            const visible = showAll ? items : items.slice(0, 3);
+            return (
+              <>
+                <div className="mt-3 grid grid-cols-1 md:grid-cols-3 gap-4">
+                  {visible.map((it, idx) => (
+                    <div
+                      key={idx}
+                      className="rounded-md bg-white dark:bg-black px-0 py-3"
+                    >
+                      <div className="text-base md:text-lg font-semibold text-left">{it.title}</div>
+                      <div className="mt-2 text-[15px] md:text-base leading-relaxed text-muted-foreground text-left">
+                        {it.body}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                {items.length > 3 && (
+                  <div className="mt-3 flex justify-center">
+                    <Button
+                      variant="outline"
+                      onClick={() => setShowAll((v) => !v)}
+                      className="inline-flex items-center gap-2 bg-transparent border border-transparent shadow-none"
+                    >
+                      <span>{showAll ? t("reasons.less") : t("reasons.more")}</span>
+                      <svg
+                        className={`w-4 h-4 transition-transform ${showAll ? "rotate-180" : ""}`}
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        aria-hidden="true"
+                      >
+                        <path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                    </Button>
+                  </div>
+                )}
+              </>
+            );
+          })()}
         </Container>
       </section>
       

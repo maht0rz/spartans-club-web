@@ -56,14 +56,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   // Initialize theme from storage or system preference
   React.useEffect(() => {
     try {
-      const stored = typeof window !== "undefined" ? localStorage.getItem("theme") : null;
-      const prefersDark =
-        typeof window !== "undefined" && window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
-      const dark = stored ? stored === "dark" : prefersDark;
-      setIsDark(dark);
-      if (typeof document !== "undefined") {
-        document.documentElement.classList.toggle("dark", dark);
-      }
+      // const stored = typeof window !== "undefined" ? localStorage.getItem("theme") : null;
+      // const prefersDark =
+      //   typeof window !== "undefined" && window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+      // const dark = stored ? stored === "dark" : prefersDark;
+      // setIsDark(dark);
+      // if (typeof document !== "undefined") {
+      //   document.documentElement.classList.toggle("dark", dark);
+      // }
     } catch {
       // noop
     }
