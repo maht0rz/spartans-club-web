@@ -8,7 +8,8 @@ import Container from "../components/Container";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const [mobileOpen, setMobileOpen] = React.useState(false);
-  const [active, setActive] = React.useState<"top" | "way-of-life" | "sessions" | "testimonials" | "private-coaching" | "gallery" | "contact" | "about">("top");
+  const [active, setActive] = React.useState<"top" | "way-of-life" | "sessions" | "testimonials" | "private-coaching" | "gallery" | "contact" | "about" 
+  | "shop">("top");
   const [isDark, setIsDark] = React.useState(false);
   const [splashVisible, setSplashVisible] = React.useState(false);
   const [splashIn, setSplashIn] = React.useState(false);
