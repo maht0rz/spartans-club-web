@@ -248,7 +248,7 @@ export default function HomePage() {
           <div className="mt-10"></div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 mt-4 auto-rows-fr mt-10">
             <Card className="p-4 flex flex-col h-full group">
-              <h3 className="font-display font-extrabold font-goodland text-primary text-xl md:text-4xl tracking-wide m-0">
+              <h3 className="font-display font-extrabold font-goodland text-primary text-3xl md:text-4xl tracking-wide m-0">
                 {t("session.vip")}
               </h3>
               <div className="text-base md:text-lg text-muted-foreground">
@@ -308,10 +308,10 @@ export default function HomePage() {
             </Card>
             <Card className="p-4 flex flex-col h-full group">
               <div className="flex items-center justify-between gap-2">
-                <h3 className="font-display font-bold font-goodland text-primary text-xl md:text-4xl tracking-wide m-0">
+                <h3 className="font-display font-bold font-goodland text-primary text-3xl md:text-4xl tracking-wide m-0">
                   {t("session.kids")}
                 </h3>
-                <span className="inline-flex items-center rounded-full bg-primary text-primary-foreground text-[10px] leading-5 px-2 py-0.5 shadow">
+                <span className="inline-flex items-center rounded-full bg-primary text-primary-foreground text-[12px] leading-5 px-2 py-0.5 shadow">
                   {t("ribbon.parents")}
                 </span>
               </div>
@@ -372,10 +372,10 @@ export default function HomePage() {
             </Card>
             <Card className="p-4 flex flex-col h-full group">
               <div className="flex items-center justify-between gap-2">
-                <h3 className="font-display font-bold font-goodland text-primary text-xl md:text-4xl tracking-wide m-0">
+                <h3 className="font-display font-bold font-goodland text-primary text-3xl md:text-4xl tracking-wide m-0">
                   {t("session.club")}
                 </h3>
-                <span className="inline-flex items-center rounded-full bg-primary text-primary-foreground text-[10px] leading-5 px-2 py-0.5 shadow">
+                <span className="inline-flex items-center rounded-full bg-primary text-primary-foreground text-[12px] leading-5 px-2 py-0.5 shadow">
                   {t("ribbon.favourite")}
                 </span>
               </div>
@@ -435,7 +435,7 @@ export default function HomePage() {
               </div>
             </Card>
             <Card className="p-4 flex flex-col h-full group">
-              <h3 className="font-display font-bold font-goodland text-primary text-xl md:text-4xl tracking-wide m-0">
+              <h3 className="font-display font-bold font-goodland text-primary text-3xl md:text-4xl tracking-wide m-0">
                 {t("session.private")}
               </h3>
               <div className="text-base md:text-lg text-muted-foreground">
