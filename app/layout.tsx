@@ -118,8 +118,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <header className="fixed top-0 left-0 right-0 z-[999] backdrop-saturate-150 backdrop-blur bg-white/90 dark:bg-black/60">
             <Container className="flex items-center justify-between w-full">
               <div className="flex items-center justify-between gap-4 md:gap-6 py-3">
-                <div className="flex items-center gap-3">
-                  {/* <img src="/logo.svg" alt="Spartans Muay Thai logo" className="w-10 h-10" /> */}
+                <div className="flex items-center gap-1.5">
+                  <img src="/logo.svg" alt="Spartans Muay Thai logo" className="w-16 object-cover h-16 aspect-square" />
                   <span className="text-[36px] font-display font-extrabold font-goodland tracking-tight uppercase">
                     SPARTANS
                   </span>

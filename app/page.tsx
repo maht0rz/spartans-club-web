@@ -143,7 +143,7 @@ export default function HomePage() {
             </div>
           </div>
           <div className="hero-image order-1 md:order-2">
-            <img src="/logo.svg" />
+            <img src="/vincent.png"/>
           </div>
         </Container>
       </section>
