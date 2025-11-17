@@ -126,7 +126,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 </div>
                 
               </div>
-              <nav className="hidden md:flex items-center gap-1">
+              <nav className="hidden lg:flex items-center gap-1">
                   {navItems.map((item) => (
                     <a
                       key={item.id}
@@ -142,7 +142,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   ))}
                 </nav>
               <div className="flex items-center gap-2">
-                <div className="hidden md:flex items-center gap-2">
+                <div className="hidden lg:flex items-center gap-2">
                   <a
                     href="https://instagram.com/spartansclubbratislava"
                     target="_blank"
@@ -179,7 +179,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                     </svg>
                   </a>
                 </div>
-                <div className="hidden md:block">
+                <div className="hidden lg:block">
                   <LanguageSelector />
                 </div>
                 {/* <button
@@ -201,7 +201,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   )}
                 </button> */}
                 <button
-                  className="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-md border border-black/10 bg-white shadow-sm"
+                  className="lg:hidden inline-flex items-center justify-center w-10 h-10 rounded-md border border-black/10 bg-white shadow-sm"
                   type="button"
                   aria-label="Toggle menu"
                   aria-expanded={mobileOpen}
@@ -220,7 +220,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               </div>
             </Container>
             {mobileOpen && (
-              <div className="md:hidden px-4 pb-4">
+              <div className="lg:hidden px-4 pb-4">
                 <div className="rounded-lg border border-black/10 bg-white shadow-lg p-2">
                   <nav className="flex flex-col">
                     {navItems.map((item) => (
@@ -302,7 +302,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <div aria-hidden className="h-[68px] md:h-[76px]"></div>
           {children}
           {/* Floating call button with helper bubble */}
-          <div className="fixed bottom-4 right-4 z-[90] flex items-end gap-3">
+          <a
+            href={`tel:${ensureI18n().t("about.phone")}`}
+            className="fixed bottom-4 right-4 z-[90] flex items-end gap-3"
+            aria-label="Call head coach"
+          >
             <div className="hidden md:flex items-center gap-2 max-w-[280px] bg-white dark:bg-black border border-black/10 dark:border-white/10 shadow-md rounded-2xl px-3 py-2">
               <span className="inline-flex items-center justify-center shrink-0 w-8 h-8 rounded-full bg-black/5 text-muted-foreground border border-black/10">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -313,19 +317,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 {ensureI18n().t("help.prompt")}
               </div>
             </div>
-            <a
-              href={`tel:${ensureI18n().t("about.phone")}`}
-              className="inline-flex items-center justify-center w-12 h-12 rounded-full overflow-hidden border border-black/10 dark:border-white/10 bg-white dark:bg-black shadow-lg hover:scale-105 transition"
-              aria-label="Call head coach"
-            >
+            <span className="inline-flex items-center justify-center w-12 h-12 rounded-full overflow-hidden border border-black/10 dark:border-white/10 bg-white dark:bg-black shadow-lg hover:scale-105 transition">
               <img src="/vincent.png" alt="Call Vincent" className="w-full h-full object-cover object-center scale-125" />
-            </a>
-          </div>
-          <footer className="mt-14 border-t border-black/10 text-muted-foreground">
+            </span>
+          </a>
+          {/* <footer className="mt-14 border-t border-black/10 text-muted-foreground">
             <Container className="py-6 text-[13px] 2xl:max-w-[1440px]">
               © {new Date().getFullYear()} Spartans Muay Thai. {ensureI18n().t("footer.copy")}
             </Container>
-          </footer>
+          </footer> */}
         </I18nProvider>
       </body>
     </html>

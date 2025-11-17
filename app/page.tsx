@@ -11,6 +11,7 @@ import TrainerCard from "../components/TrainerCard";
 import { cn } from "../lib/utils";
 import trainersData from "../data/trainers.json";
 import sponsorsData from "../data/sponsors.json";
+import pricingData from "../data/pricing.json";
 
 function useInView<T extends HTMLElement>(options?: IntersectionObserverInit) {
   const ref = React.useRef<T | null>(null);
@@ -106,7 +107,6 @@ function CountUp({
 
 export default function HomePage() {
   const { t, i18n } = useTranslation();
-  const { t: ts } = useTranslation("shared");
   const langKey =
     i18n.language && i18n.language.toLowerCase().startsWith("sk") ? "sk" : "en";
   return (
@@ -293,7 +293,7 @@ export default function HomePage() {
                     {t("pricing.month12")}
                   </span>
                   <span className="text-sm font-bold text-primary ml-auto text-right whitespace-nowrap">
-                    {ts("pricing.vip.month12")}
+                    {pricingData.vip.month12}
                   </span>
                 </div>
                 <div className="px-4 py-2 flex items-center justify-between">
@@ -301,7 +301,7 @@ export default function HomePage() {
                     {t("pricing.session")}
                   </span>
                   <span className="text-sm font-semibold text-foreground ml-auto text-right whitespace-nowrap">
-                    {ts("pricing.vip.session")}
+                    {pricingData.vip.session}
                   </span>
                 </div>
               </div>
@@ -357,7 +357,7 @@ export default function HomePage() {
                     {t("pricing.month12")}
                   </span>
                   <span className="text-sm font-bold text-primary ml-auto text-right whitespace-nowrap">
-                    {ts("pricing.kids.month12")}
+                    {pricingData.kids.month12}
                   </span>
                 </div>
                 <div className="px-4 py-2 flex items-center justify-between">
@@ -365,7 +365,7 @@ export default function HomePage() {
                     {t("pricing.session")}
                   </span>
                   <span className="text-sm font-semibold text-foreground ml-auto text-right whitespace-nowrap">
-                    {ts("pricing.kids.session")}
+                    {pricingData.kids.session}
                   </span>
                 </div>
               </div>
@@ -421,7 +421,7 @@ export default function HomePage() {
                     {t("pricing.month12")}
                   </span>
                   <span className="text-sm font-bold text-primary ml-auto text-right whitespace-nowrap">
-                    {ts("pricing.club.month12")}
+                    {pricingData.club.month12}
                   </span>
                 </div>
                 <div className="px-4 py-2 flex items-center justify-between">
@@ -429,7 +429,7 @@ export default function HomePage() {
                     {t("pricing.session")}
                   </span>
                   <span className="text-sm font-semibold text-foreground ml-auto text-right whitespace-nowrap">
-                    {ts("pricing.club.session")}
+                    {pricingData.club.session}
                   </span>
                 </div>
               </div>
@@ -480,7 +480,7 @@ export default function HomePage() {
                     {t("pricing.session")}
                   </span>
                   <span className="text-sm font-semibold text-foreground ml-auto text-right whitespace-nowrap">
-                    {ts("pricing.private.session")}
+                    {t("pricing.private.session")}
                   </span>
                 </div>
               </div>

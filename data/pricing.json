@@ -1,0 +1,15 @@
+{
+  "vip": {
+    "session": "25 EUR",
+    "month12": "200 EUR"
+  },
+  "kids": {
+    "session": "15 EUR",
+    "month12": "100 EUR"
+  },
+  "club": {
+    "session": "20 EUR",
+    "month12": "150 EUR"
+  }
+}
+

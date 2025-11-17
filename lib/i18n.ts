@@ -4,8 +4,6 @@ import i18next, { type i18n as I18nInstance } from "i18next";
 import { initReactI18next } from "react-i18next";
 import en from "../locales/en/common.json";
 import sk from "../locales/sk/common.json";
-import enPricing from "../locales/en/shared/pricing.json";
-import skPricing from "../locales/sk/shared/pricing.json";
 
 let initialized = false;
 
@@ -22,8 +20,8 @@ export function ensureI18n(): I18nInstance {
       .use(initReactI18next)
       .init({
         resources: {
-          en: { common: en, shared: enPricing },
-          sk: { common: sk, shared: skPricing }
+          en: { common: en,  },
+          sk: { common: sk }
         },
         lng: getInitialLanguage(),
         fallbackLng: "sk",
