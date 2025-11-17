@@ -1,0 +1,251 @@
+{
+  "brand.title": "Spartans Muay Thai",
+  "brand.subtitle": "Headcoach Vincent Kolek • 30 years experience",
+  "hero.eyebrow": "Muay Thai for kids and adults",
+  "hero.title": "Sharper technique. Smarter conditioning. Stronger mindset.",
+  "hero.body": "Elite coaching led by {{coach}} (30 years of experience). Small-group VIP mornings, Kids fundamentals, evening Club sessions, and fully tailored Private training.",
+  "hero.cta.sessions": "View sessions & times",
+  "hero.cta.trainers": "Our trainers",
+  "reasons.title": "Muay Thai as a Way Of Life",
+  "reasons.subtitle": "A quick overview of history, health benefits, self‑defense and mindset.",
+  "reasons.more": "Show more",
+  "reasons.less": "Show less",
+  "reasons.items": [
+    {
+      "title": "Rich history and culture",
+      "body": "Muay Thai, the 'Art of Eight Limbs', has centuries of tradition from Thailand, blending respect, discipline, and practical effectiveness."
+    },
+    {
+      "title": "Powerful health benefits",
+      "body": "Full‑body training that improves conditioning, strength, mobility, and coordination while burning calories and reducing stress."
+    },
+    {
+      "title": "Real‑world self‑defense",
+      "body": "Efficient strikes (punches, kicks, knees, elbows) and clinch work build confidence and practical self‑protection skills."
+    },
+    {
+      "title": "Discipline and mindset",
+      "body": "Structured practice sharpens focus, resilience, and consistency that transfers to everyday life."
+    },
+    {
+      "title": "Do I need prior experience?",
+      "body": "No experience required. Beginners are welcome. We scale drills to your level and focus on fundamentals first."
+    },
+    {
+      "title": "How often should I train?",
+      "body": "2–3 sessions per week is a great start. As technique and conditioning build, some athletes train 4–5x weekly."
+    },
+    {
+      "title": "Is Muay Thai safe?",
+      "body": "Safety is a priority. We use proper technique, controlled drills, appropriate protective gear, and progressive intensity."
+    },
+    {
+      "title": "What does a class look like?",
+      "body": "Warm‑up and mobility, technical blocks and pad work, partner drills or clinch, and an optional conditioning finisher. Cool‑down and Q&A at the end."
+    },
+    {
+      "title": "Age groups and inclusivity",
+      "body": "We train kids, teens and adults. Sessions are supportive, disciplined and respectful for all skill levels."
+    }
+  ],
+  "sessions.title": "Sessions",
+  "sessions.subtitle": "All sessions below are personally led by {{coach}}.",
+  "sessions.gear.title": "What do I need to bring to my first session?",
+  "sessions.gear.first": "Just comfortable shorts, a T‑shirt and flip flops. We’ll guide you through everything else on your first visit.",
+  "sessions.gear.listTitle": "Recommended gear for training",
+  "sessions.gear.items": [
+    "Boxing gloves (12–16oz)",
+    "Hand wraps",
+    "Mouthguard",
+    "Shin guards",
+    "Towel",
+    "Water bottle"
+  ],
+  "session.vip": "VIP",
+  "session.kids": "KIDS",
+  "session.club": "CLUB",
+  "session.private": "PRIVATE",
+  "session.vip.badge": "Morning focus • Small group",
+  "session.kids.badge": "Fundamentals • Confidence",
+  "session.club.badge": "Technical • Conditioning",
+  "session.private.badge": "1:1 or small group",
+  "session.private.time": "Upon request",
+  "gallery.title": "Gallery",
+  "gallery.subtitle": "Follow us on Instagram",
+  "private.title": "Trainers",
+  "private.subtitle": "Work 1:1 with specialist coaches for striking, grappling, conditioning, and mindset.",
+  "private.card.placeholder.name": "Coach Name",
+  "private.card.placeholder.tags1": "Muay Thai • Pads • Technique",
+  "private.card.placeholder.tags2": "Boxing • Footwork • Defense",
+  "private.card.placeholder.tags3": "Strength • Conditioning",
+  "contact.phone": "Phone",
+  "contact.whatsapp": "WhatsApp",
+  "contact.instagram": "Instagram",
+  "footer.copy": "All rights reserved.",
+  "nav.home": "Home",
+  "nav.wayoflife": "Way of life",
+  "nav.sessions": "Sessions",
+  "nav.testimonials": "Testimonials",
+  "nav.private": "Trainers",
+  "nav.gallery": "Gallery",
+  "nav.contact": "Contact",
+  "nav.about": "About",
+  "about.title": "About",
+  "about.subtitle": "Where to find us and legal details",
+  "about.companyLabel": "Company",
+  "about.companyName": "Spartans Club Bratislava",
+  "about.addressLabel": "Address",
+  "about.address": "Bratislava, Slovakia",
+  "about.phoneLabel": "Phone",
+  "about.phone": "+421 900 000 000",
+  "about.emailLabel": "Email",
+  "about.email": "info@spartans.sk",
+  "about.mapQuery": "Spartans Club Bratislava, Slovakia",
+  "help.prompt": "Need help with anything? Click here and call head coach Vincent now",
+  "nav.shop": "E-Shop",
+  "cta.start": "Start training",
+  "cta.startNow": "Start training now",
+  "heading.why": "Why join",
+  "heading.ideal": "Ideal for",
+  "session.vip.reasons": [
+    "Coached focus before the workday",
+    "Small groups for faster progress",
+    "Tailored conditioning"
+  ],
+  "session.vip.ideal": [
+    "Professionals with morning availability",
+    "Athletes wanting 1:1 feedback",
+    "Beginners preferring calm sessions"
+  ],
+  "session.kids.reasons": [
+    "Build coordination and discipline",
+    "Safe, structured fundamentals",
+    "Confidence through achievement"
+  ],
+  "session.kids.ideal": [
+    "Ages 6–12",
+    "New to martial arts",
+    "Parents seeking healthy routine"
+  ],
+  "session.club.reasons": [
+    "Technique and conditioning blend",
+    "Padwork and controlled drills",
+    "Supportive team environment"
+  ],
+  "session.club.ideal": [
+    "Teens and adults",
+    "Skill builders aiming for consistency",
+    "Returners after a break"
+  ],
+  "session.private.reasons": [
+    "Fully customized plan",
+    "Flexible scheduling",
+    "Accelerated skill development"
+  ],
+  "session.private.ideal": [
+    "Time-constrained schedules",
+    "Competitors",
+    "Specific goals or rehab"
+  ],
+  "ribbon.favourite": "Most favourite",
+  "ribbon.parents": "Also suitable for Parents",
+  "testimonials.title": "Testimonials",
+  "testimonials.subtitle": "What our members say about training with us",
+  "testimonials.items": [
+    {
+      "quote": "Best decision this year. Technique finally makes sense.",
+      "author": "Peter K.",
+      "photo": "/vincent.png",
+      "rating": 5,
+      "tags": ["Attentive coach", "Amazing collective"]
+    },
+    {
+      "quote": "Kids sessions are structured and fun—my daughter can’t wait.",
+      "author": "Ivana R.",
+      "photo": "/vincent.png",
+      "rating": 5,
+      "tags": ["Structured sessions", "Great amenities"]
+    },
+    {
+      "quote": "VIP mornings set up my day. Small group, huge gains.",
+      "author": "Marek S.",
+      "photo": "/vincent.png",
+      "rating": 4,
+      "tags": ["Small groups", "Great parking"]
+    },
+    {
+      "quote": "Clear coaching and a friendly community. I feel stronger weekly.",
+      "author": "Lucia V.",
+      "photo": "/vincent.png",
+      "rating": 5,
+      "tags": ["Attentive coach", "Amazing collective"]
+    },
+    {
+      "quote": "Private sessions fixed my stance and balance in two weeks.",
+      "author": "Andrej D.",
+      "photo": "/vincent.png",
+      "rating": 5,
+      "tags": ["1:1 focus", "Great amenities"]
+    },
+    {
+      "quote": "Great mix of conditioning and technique. Highly recommended.",
+      "author": "Martin P.",
+      "photo": "/vincent.png",
+      "rating": 5,
+      "tags": ["Technique + conditioning", "Good snacks at the bar"]
+    }
+  ],
+  "stats.trainees.label": "Trainees",
+  "stats.trainees.value": "1,000+",
+  "stats.experience.label": "Years of experience",
+  "stats.experience.value": "30+",
+  "stats.sessions.label": "Sessions delivered",
+  "stats.sessions.value": "5,000+",
+  "stats.established.label": "Established",
+  "stats.established.value": "2007",
+  "days.mwf": "Mon / Wed / Fri",
+  "days.all": "Mon – Sun",
+  "pricing.session": "1 session",
+  "pricing.month12": "1 calendar month (12 sessions)",
+  "contact.cta": "Contact",
+  "trainers.sessionsTitle": "Sessions",
+  "trainers.contactTitle": "Contact",
+  "trainers.availability": "Flexible schedule • Book in advance",
+  "trainers": {
+    "items": [
+      {
+        "name": "Vincent",
+        "tags": "Muay Thai • Pads • Technique",
+        "bio": "Former professional Muay Thai fighter focused on precision padwork, footwork mechanics and practical ring IQ.",
+        "phone": "+40711111111",
+        "whatsapp": "https://wa.me/40711111111",
+        "instagram": "https://instagram.com/trainer_one"
+      },
+      {
+        "name": "Matúš",
+        "tags": "Boxing • Defense • Footwork",
+        "bio": "Boxing specialist with a passion for defense, rhythm and efficient combinations. Sessions emphasize timing and balance.",
+        "phone": "+40722222222",
+        "whatsapp": "https://wa.me/40722222222",
+        "instagram": "https://instagram.com/trainer_two"
+      },
+      {
+        "name": "Marek",
+        "tags": "Strength • Conditioning",
+        "bio": "Strength & conditioning coach blending athletic movement, mobility and smart load progressions to build durable fighters.",
+        "phone": "+40733333333",
+        "whatsapp": "https://wa.me/40733333333",
+        "instagram": "https://instagram.com/trainer_three"
+      },
+      {
+        "name": "Martin",
+        "tags": "K1 • Sparring • Strategy",
+        "bio": "K1 strategist focused on building ring composure, distance control and purposeful sparring that transfers to real bouts.",
+        "phone": "+40744444444",
+        "whatsapp": "https://wa.me/40744444444",
+        "instagram": "https://instagram.com/trainer_four"
+      }
+    ]
+  }
+}
+

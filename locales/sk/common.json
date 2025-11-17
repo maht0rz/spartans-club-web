@@ -1,0 +1,267 @@
+{
+  "brand.title": "Spartans Muay Thai",
+  "brand.subtitle": "Hlavný tréner Vincent Kolek • 30 rokov skúseností",
+  "hero.eyebrow": "Muay Thai pre deti aj dospelých",
+  "hero.title": "Presnejšia technika. Múdrejší kondičný tréning. Silnejšia myseľ.",
+  "hero.body": "Elitné vedenie pod {{coach}} (30 rokov skúseností). Ranné VIP malé skupiny, detské základy, večerný klub a na mieru šité súkromné tréningy.",
+  "hero.cta.sessions": "Zobraziť tréningy a časy",
+  "hero.cta.trainers": "Naši tréneri",
+  "reasons.title": "Muay Thai ako Way Of Life",
+  "reasons.subtitle": "Stručný prehľad histórie, zdravotných benefitov, sebaobrany a mindsetu.",
+  "reasons.more": "Zobraziť viac",
+  "reasons.less": "Zobraziť menej",
+  "reasons.items": [
+    {
+      "title": "Bohatá história a kultúra",
+      "body": "Muay Thai – „Umenie ôsmich končatín“ – má storočia tradície z Thajska a spája rešpekt, disciplínu a praktickú efektivitu."
+    },
+    {
+      "title": "Silné zdravotné benefity",
+      "body": "Komplexný tréning celého tela zlepšuje kondíciu, silu, mobilitu a koordináciu, pritom spaľuje kalórie a znižuje stres."
+    },
+    {
+      "title": "Sebadefenzíva do praxe",
+      "body": "Efektívne údery (ruky, kopy, kolená, lakte) a klinč budujú sebaistotu a praktické zručnosti na vlastnú ochranu."
+    },
+    {
+      "title": "Disciplína a mindset",
+      "body": "Štruktúrovaný tréning rozvíja sústredenie, odolnosť a konzistentnosť, ktoré prenesiete aj do bežného života."
+    },
+    {
+      "title": "Potrebujem skúsenosti?",
+      "body": "Nie. Začiatočníci sú vítaní. Drilly prispôsobíme vašej úrovni a začneme od základov."
+    },
+    {
+      "title": "Ako často trénovať?",
+      "body": "Ideálne 2–3 tréningy týždenne na začiatok. Ako porastie technika a kondícia, niektorí športovci pridávajú na 4–5× týždenne."
+    },
+    {
+      "title": "Je Muay Thai bezpečné?",
+      "body": "Bezpečnosť je priorita. Dbáme na techniku, kontrolované nácviky, vhodné chrániče a postupnú intenzitu."
+    },
+    {
+      "title": "Ako vyzerá hodina?",
+      "body": "Rozcvičenie a mobilita, technické bloky a práca na lapách, párové drilly alebo klinč, voliteľná kondícia na záver. Na konci krátky cool‑down a priestor na otázky."
+    },
+    {
+      "title": "Vekové skupiny a inkluzivita",
+      "body": "Trénujeme deti, tínedžerov aj dospelých. Tréningy sú podporné, disciplinované a rešpektujú všetky úrovne."
+    }
+  ],
+  "sessions.title": "Rozvrh",
+  "sessions.subtitle": "Všetky tréningy vedie osobne {{coach}}.",
+  "sessions.gear.title": "Čo si mám priniesť na prvý tréning?",
+  "sessions.gear.first": "Na prvý tréning vám stačia pohodlné kraťasy, tričko a šľapky. So všetkým ostatným vám poradíme na mieste.",
+  "sessions.gear.listTitle": "Odporúčaná výbava na tréning",
+  "sessions.gear.items": [
+    "Boxerské rukavice (12–16 oz)",
+    "Bandáže",
+    "Chránič zubov",
+    "Chrániče holení",
+    "Uterák",
+    "Fľaša na vodu"
+  ],
+  "session.vip": "VIP",
+  "session.kids": "DETI",
+  "session.club": "KLUB",
+  "session.private": "SÚKROMNÉ",
+  "session.vip.badge": "Ráno • Malá skupina",
+  "session.kids.badge": "Základy • Sebavedomie",
+  "session.club.badge": "Technika • Kondícia",
+  "session.private.badge": "1:1 alebo malá skupina",
+  "session.private.time": "Podľa dohody",
+  "gallery.title": "Galéria",
+  "gallery.subtitle": "Sledujte nás na Instagrame",
+  "private.title": "Tréneri",
+  "private.subtitle": "1:1 spolupráca so špecialistami na striking, grappling, kondíciu a mindset.",
+  "private.card.placeholder.name": "Meno trénera",
+  "private.card.placeholder.tags1": "Muay Thai • Nácviky • Technika",
+  "private.card.placeholder.tags2": "Box • Práca nôh • Obrana",
+  "private.card.placeholder.tags3": "Sila • Kondícia",
+  "contact.phone": "Telefón",
+  "contact.whatsapp": "WhatsApp",
+  "contact.instagram": "Instagram",
+  "footer.copy": "Všetky práva vyhradené.",
+  "nav.home": "Domov",
+  "nav.wayoflife": "Way Of Life",
+  "nav.sessions": "Rozvrh",
+  "nav.testimonials": "Referencie",
+  "nav.private": "Tréneri",
+  "nav.gallery": "Galéria",
+  "nav.contact": "Kontakt",
+  "nav.about": "O nás",
+  "nav.shop": "E-Shop",
+  "about.title": "O nás",
+  "about.subtitle": "Kde nás nájdete a právne údaje",
+  "about.companyLabel": "Názov klubu",
+  "about.companyName": "Spartans Club Bratislava",
+  "about.addressLabel": "Adresa",
+  "about.address": "Bratislava, Slovensko",
+  "about.phoneLabel": "Telefón",
+  "about.phone": "+421 900 000 000",
+  "about.emailLabel": "E‑mail",
+  "about.email": "info@spartans.sk",
+  "about.mapQuery": "Spartans Club Bratislava, Slovensko",
+  "help.prompt": "Potrebujete s niečím pomôcť? Kliknite sem a zavolajte headcoachovi Vincentovi",
+  "cta.start": "Začať trénovať",
+  "cta.startNow": "Začať trénovať teraz",
+  "heading.why": "Prečo sa pridať",
+  "heading.ideal": "Ideálne pre",
+  "session.vip.reasons": [
+    "Sústredený tréning pred pracovným dňom",
+    "Malé skupiny pre rýchlejší progres",
+    "Na mieru nastavená kondícia"
+  ],
+  "session.vip.ideal": [
+    "Profesionáli s rannou dostupnosťou",
+    "Športovci vyžadujúci 1:1 spätnú väzbu",
+    "Začiatočníci preferujúci pokojnejšie tempo"
+  ],
+  "session.kids.reasons": [
+    "Rozvoj koordinácie a disciplíny",
+    "Bezpečné, štruktúrované základy",
+    "Sebavedomie cez dosiahnuté ciele"
+  ],
+  "session.kids.ideal": [
+    "Deti 6–12 rokov",
+    "Nováčikovia v bojových športoch",
+    "Rodičia hľadajúci zdravý režim"
+  ],
+  "session.club.reasons": [
+    "Kombinácia techniky a kondície",
+    "Nácviky na lapách a kontrolované drilly",
+    "Podporná klubová atmosféra"
+  ],
+  "session.club.ideal": [
+    "Tínedžeri a dospelí",
+    "Budovatelia zručností s dôrazom na konzistenciu",
+    "Návrat po pauze"
+  ],
+  "session.private.reasons": [
+    "Plne prispôsobený plán",
+    "Flexibilné plánovanie",
+    "Zrýchlený rozvoj zručností"
+  ],
+  "session.private.ideal": [
+    "Časovo vyťažení",
+    "Súťažiaci",
+    "Špecifické ciele alebo rehabilitácia"
+  ],
+  "ribbon.favourite": "Najobľúbenejšie",
+  "ribbon.parents": "Vhodné aj pre Rodičov",
+  "testimonials.title": "Referencie",
+  "testimonials.subtitle": "Čo hovoria naši členovia o tréningoch",
+  "testimonials.items": [
+    {
+      "quote": "Najlepšie rozhodnutie tohto roka. Technika konečne dáva zmysel.",
+      "author": "Peter K.",
+      "photo": "/vincent.png",
+      "rating": 5,
+      "tags": ["Pozorný tréner", "Úžasný kolektív"]
+    },
+    {
+      "quote": "Detské tréningy sú štruktúrované a zábavné — dcéra sa teší.",
+      "author": "Ivana R.",
+      "photo": "/vincent.png",
+      "rating": 5,
+      "tags": ["Štruktúrované tréningy", "Skvelé zázemie"]
+    },
+    {
+      "quote": "Ranné VIP ma nastavia na celý deň. Malá skupina, veľké pokroky.",
+      "author": "Marek S.",
+      "photo": "/vincent.png",
+      "rating": 4,
+      "tags": ["Malé skupiny", "Skvelé parkovanie"]
+    },
+    {
+      "quote": "Jasné vedenie a priateľská komunita. Cítim sa každý týždeň silnejší.",
+      "author": "Lucia V.",
+      "photo": "/vincent.png",
+      "rating": 5,
+      "tags": ["Pozorný tréner", "Úžasný kolektív"]
+    },
+    {
+      "quote": "Súkromné tréningy mi za dva týždne opravili postoj a balans.",
+      "author": "Andrej D.",
+      "photo": "/vincent.png",
+      "rating": 5,
+      "tags": ["1:1 prístup", "Skvelé zázemie"]
+    },
+    {
+      "quote": "Skvelá kombinácia kondície a techniky. Určite odporúčam.",
+      "author": "Martin P.",
+      "photo": "/vincent.png",
+      "rating": 5,
+      "tags": ["Technika + kondícia", "Dobré snacky na bare"]
+    }
+  ],
+  "stats.trainees.label": "Počet zverencov",
+  "stats.trainees.value": "1 000+",
+  "stats.experience.label": "Roky skúseností",
+  "stats.experience.value": "30+",
+  "stats.sessions.label": "Odtrénovaných tréningov",
+  "stats.sessions.value": "5 000+",
+  "stats.established.label": "Trénujeme od roku",
+  "stats.established.value": "2007",
+  "days.mwf": "Po / Str / Pi",
+  "days.all": "Po – Ne",
+  "pricing.session": "1 tréning",
+  "pricing.month12": "1 kalendárny mesiac (12 tréningov)",
+  "contact.cta": "Kontakt",
+  "trainers.sessionsTitle": "Tréningy",
+  "trainers.contactTitle": "Kontakt",
+  "trainers.availability": "Flexibilný rozvrh • Rezervujte vopred",
+  "trainers": {
+    "items": [
+      {
+        "name": "Vincent",
+        "tags": "Muay Thai • Nácviky • Technika",
+        "bio": "Bývalý profi zápasník Muay Thai, zameraný na presnú prácu na lapách, prácu nôh a praktické ringové rozhodovanie.",
+        "phone": "+40711111111",
+        "whatsapp": "https://wa.me/40711111111",
+        "instagram": "https://instagram.com/trainer_one"
+      },
+      {
+        "name": "Erik",
+        "tags": "Box • Obrana • Práca nôh",
+        "bio": "Špecialista na box s dôrazom na obranu, rytmus a efektívne kombinácie. Tréningy stavajú na načasovaní a rovnováhe.",
+        "phone": "+40722222222",
+        "whatsapp": "https://wa.me/40722222222",
+        "instagram": "https://instagram.com/trainer_two"
+      },
+      {
+        "name": "Matúš",
+        "tags": "Sila • Kondícia",
+        "bio": "Sila & kondícia s prepojením na atletický pohyb, mobilitu a rozumnú progresiu záťaže pre odolných a výkonných bojovníkov.",
+        "phone": "+40733333333",
+        "whatsapp": "https://wa.me/40733333333",
+        "instagram": "https://instagram.com/trainer_three"
+      },
+      {
+        "name": "Alex",
+        "tags": "K1 • Sparing • Stratégia",
+        "bio": "K1 stratég so zameraním na rozvahu v ringu, kontrolu vzdialenosti a zmysluplný sparing prenášajúci sa do zápasu.",
+        "phone": "+40744444444",
+        "whatsapp": "https://wa.me/40744444444",
+        "instagram": "https://instagram.com/trainer_four"
+      },
+      {
+        "name": "Alexandra",
+        "tags": "K1 • Sparing • Stratégia",
+        "bio": "K1 stratég so zameraním na rozvahu v ringu, kontrolu vzdialenosti a zmysluplný sparing prenášajúci sa do zápasu.",
+        "phone": "+40744444444",
+        "whatsapp": "https://wa.me/40744444444",
+        "instagram": "https://instagram.com/trainer_four"
+      },
+      {
+        "name": "Samo",
+        "tags": "K1 • Sparing • Stratégia",
+        "bio": "K1 stratég so zameraním na rozvahu v ringu, kontrolu vzdialenosti a zmysluplný sparing prenášajúci sa do zápasu.",
+        "phone": "+40744444444",
+        "whatsapp": "https://wa.me/40744444444",
+        "instagram": "https://instagram.com/trainer_four"
+      }
+    ]
+  }
+}
+

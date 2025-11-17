@@ -1,26 +1,374 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
+/* Color tokens extracted from logo.svg */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --color-bg: #ffffff;          /* light base */
+  --color-surface: #f7f8fa;     /* light surface for cards */
+  --color-primary: #9b1f20;     /* crimson from .st4 */
+  --color-primary-700: #7f1718; /* darker crimson for hovers */
+  --color-secondary: #3b3e4b;   /* slate from .st3 */
+  --color-text: #0a0203;        /* near-black from .st0 */
+  --color-muted: #5e6370;       /* balanced muted on light */
+  --radius: 14px;
+  --radius-sm: 10px;
+  --shadow-1: 0 10px 24px rgba(0,0,0,.10);
+  --shadow-2: 0 20px 40px rgba(0,0,0,.12);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Goodland - map extra bold to provided OTF so font-extrabold works */
+@font-face {
+  font-family: "Goodland";
+  src: url("/fonts/Goodland Bold.otf") format("opentype");
+  /* font-weight: 800; */
+  /* font-style: normal; */
+  /* font-display: swap; */
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+.font-extrabold {
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
 }
+
+.font-goodland {
+  font-family: "Goodland", sans-serif;
+  font-weight: 800;
+}
+
+/* shadcn-style variables (light) */
+:root {
+  --background: 0 0% 100%;
+  --foreground: 0 0% 4%;
+  --card: 0 0% 100%;
+  --card-foreground: 0 0% 4%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 0 0% 4%;
+  --primary: 356 68% 40%; /* #9b1f20 */
+  --primary-foreground: 0 0% 100%;
+  --secondary: 229 11% 27%; /* #3b3e4b */
+  --secondary-foreground: 0 0% 100%;
+  --muted: 225 8% 40%;
+  --muted-foreground: 225 8% 40%;
+  --accent: 356 68% 95%;
+  --accent-foreground: 356 68% 40%;
+  --border: 0 0% 92%;
+  --input: 0 0% 92%;
+  --ring: 356 68% 40%;
+}
+
+/* Dark theme variables (class-based) */
+.dark {
+  /* custom site vars */
+  --color-bg: #0a0a0a;
+  --color-surface: #0c0c0c;
+  --color-text: #f3f3f3;
+  --color-muted: #a0a0a0; /* neutral gray for muted text */
+  --color-primary: #9b1f20;
+  --color-primary-700: #7f1718;
+  --color-secondary: #3b3e4b;
+  /* shadcn vars */
+  --background: 0 0% 6%;
+  --foreground: 0 0% 96%;
+  --card: 0 0% 8%;
+  --card-foreground: 0 0% 96%;
+  --popover: 0 0% 6%;
+  --popover-foreground: 0 0% 96%;
+  --primary: 356 68% 40%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 0 0% 22%;
+  --secondary-foreground: 0 0% 96%;
+  --muted: 0 0% 16%;
+  --muted-foreground: 0 0% 74%;
+  --accent: 356 68% 18%;
+  --accent-foreground: 356 68% 95%;
+  --border: 0 0% 20%;
+  --input: 0 0% 20%;
+  --ring: 356 68% 40%;
+}
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html, body { height: 100%; }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  color: var(--color-text);
+  background: var(--color-bg);
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
+
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; height: auto; }
+
+.container {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+header.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  backdrop-filter: saturate(140%) blur(8px);
+  background: rgba(255,255,255,.9);
+  border-bottom: 1px solid rgba(0,0,0,.06);
+}
+
+.site-header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 0;
+}
+.brand img {
+  width: 40px;
+  height: 40px;
+  filter: none;
+}
+.brand .title {
+  font-weight: 700;
+  letter-spacing: .6px;
+  font-size: 18px;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+}
+.brand .subtitle {
+  color: var(--color-muted);
+  font-size: 12px;
+}
+
+.lang-switch {
+  display: flex;
+  gap: 8px;
+}
+.lang-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(0,0,0,.12);
+  background: rgba(0,0,0,.02);
+  color: var(--color-text);
+  cursor: pointer;
+}
+.lang-active {
+  border-color: rgba(155,31,32,.6);
+  background: rgba(155,31,32,.18);
+}
+
+.hero {
+  padding: 64px 0 36px;
+}
+.hero-inner {
+  display: grid;
+  grid-template-columns: 1.2fr .8fr;
+  gap: 40px;
+  align-items: center;
+}
+.hero-image {
+  max-width: 520px;
+  margin: 0 auto;
+}
+.hero-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  /* Subtle bottom fade into page background */
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 72%, rgba(0,0,0,0) 100%);
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 72%, rgba(0,0,0,0) 100%);
+  filter: drop-shadow(0 12px 24px rgba(0,0,0,.12));
+}
+.hero h1 {
+  font-size: clamp(32px, 5vw, 58px);
+  line-height: 1.05;
+  margin: 0 0 14px;
+  letter-spacing: .4px;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+}
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(155,31,32,.08);
+  color: var(--color-primary);
+  border: 1px solid rgba(155,31,32,.24);
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  letter-spacing: .4px;
+}
+.hero p {
+  color: var(--color-muted);
+  font-size: 18px;
+  line-height: 1.65;
+  margin: 14px 0 24px;
+}
+.cta-row {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px 18px;
+  border-radius: 999px;
+  border: 1px solid rgba(0,0,0,.12);
+  background: #ffffff;
+  color: var(--color-text);
+  transition: transform .08s ease, background .2s ease, border-color .2s ease;
+}
+.btn:hover { transform: translateY(-1px); }
+.btn-primary {
+  background: linear-gradient(180deg, var(--color-primary), var(--color-primary-700));
+  border-color: rgba(0,0,0,.1);
+  box-shadow: var(--shadow-1);
+  color: #ffffff;
+}
+.btn-outline {
+  background: transparent;
+  border-color: rgba(0,0,0,.2);
+}
+
+.panel {
+  background: #ffffff;
+  border: 1px solid rgba(0,0,0,.08);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-1);
+}
+
+.section {
+  padding: 28px 0 56px;
+}
+
+/* Full-width light section with subtle top/bottom blend */
+.section-trainings {
+  position: relative;
+  background: var(--color-surface);
+}
+.section-trainings::before,
+.section-trainings::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 56px;
+  pointer-events: none;
+}
+.section-trainings::before {
+  top: -1px;
+  background: linear-gradient(to bottom, var(--color-bg) 0%, rgba(0,0,0,0) 100%);
+}
+.section-trainings::after {
+  bottom: -1px;
+  background: linear-gradient(to top, var(--color-bg) 0%, rgba(0,0,0,0) 100%);
+}
+.section h2 {
+  font-size: clamp(28px, 5vw, 56px);
+  margin: 0 0 16px;
+  text-transform: uppercase;
+  letter-spacing: -.02em;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(0,0,0,.12);
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+}
+.muted { color: var(--color-muted); }
+
+.sessions-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0,1fr));
+  gap: 14px;
+}
+.session-card {
+  border-radius: var(--radius-sm);
+  padding: 16px;
+  background: #ffffff;
+  border: 1px solid rgba(0,0,0,.08);
+  box-shadow: var(--shadow-1);
+}
+.session-card h3 {
+  margin: 0 0 6px;
+  font-size: 16px;
+  letter-spacing: .4px;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+}
+.time {
+  font-size: 14px;
+  color: var(--color-muted);
+}
+.session-badge {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(0,0,0,.05);
+  border: 1px solid rgba(0,0,0,.15);
+  color: var(--color-muted);
+  font-size: 12px;
+}
+.dark .session-badge {
+  background: rgba(255,255,255,.08);
+  border-color: rgba(255,255,255,.18);
+  color: var(--color-text);
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: 14px;
+}
+.card {
+  padding: 18px;
+  border-radius: var(--radius-sm);
+  background: #ffffff;
+  border: 1px solid rgba(0,0,0,.08);
+  box-shadow: var(--shadow-1);
+}
+.card h3 { margin: 0 0 6px; font-size: 16px; }
+.chip {
+  display: inline-block;
+  padding: 6px 10px;
+  border: 1px solid rgba(0,0,0,.12);
+  border-radius: 999px;
+  font-size: 12px;
+  color: var(--color-secondary);
+}
+.contact {
+  margin-top: 12px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.contact a {
+  font-size: 13px;
+  opacity: .9;
+  border-bottom: 1px dashed rgba(0,0,0,.25);
+}
+
+footer.site-footer {
+  margin-top: 56px;
+  border-top: 1px solid rgba(0,0,0,.06);
+  color: var(--color-muted);
+  padding: 22px 0 40px;
+  font-size: 13px;
+}
+
+@media (max-width: 960px) {
+  .hero-inner { grid-template-columns: 1fr; }
+  .sessions-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .cards { grid-template-columns: 1fr; }
+}
+

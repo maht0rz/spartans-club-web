@@ -1,0 +1,21 @@
+{
+  "pricing": {
+    "vip": {
+      "session": "10 EUR",
+      "month12": "100 EUR"
+    },
+    "kids": {
+      "session": "20 EUR",
+      "month12": "180 EUR"
+    },
+    "club": {
+      "session": "12 EUR",
+      "month12": "110 EUR"
+    },
+    "private": {
+      "session": "By arrangement",
+      "month12": "—"
+    }
+  }
+}
+
