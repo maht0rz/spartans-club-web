@@ -307,7 +307,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             className="fixed bottom-4 right-4 z-[90] flex items-end gap-3"
             aria-label="Call head coach"
           >
-            <div className="hidden md:flex items-center gap-2 max-w-[280px] bg-white dark:bg-black border border-black/10 dark:border-white/10 shadow-md rounded-2xl px-3 py-2">
+            <div className="flex items-center gap-2 max-w-[280px] bg-white dark:bg-black border border-black/10 dark:border-white/10 shadow-md rounded-2xl px-3 py-2">
               <span className="inline-flex items-center justify-center shrink-0 w-8 h-8 rounded-full bg-black/5 text-muted-foreground border border-black/10">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                   <path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 3.11 5.18 2 2 0 0 1 5.11 3h3a2 2 0 0 1 2 1.72c.12.86.3 1.7.54 2.5a2 2 0 0 1-.45 2.11L9 10a16 16 0 0 0 5 5l.67-1.2a2 2 0 0 1 2.11-.45c.8.24 1.64.42 2.5.54A2 2 0 0 1 22 16.92Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
