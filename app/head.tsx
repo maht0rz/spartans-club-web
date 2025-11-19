@@ -3,7 +3,7 @@ export default function Head() {
   const title = "Spartans Muay Thai Bratislava | Deti, Dospelí, VIP & Súkromné tréningy";
   const description =
     "Train Muay Thai in Bratislava with Headcoach Vincent Kolek (30+ years). VIP mornings, kids classes, club sessions and private coaching. Free parking, modern gym, and supportive community.";
-  const ogImage = siteUrl ? `${siteUrl}/vincent.png` : "/vincent.png";
+  const ogImage = siteUrl ? `${siteUrl}/logo.svg` : "/logo.svg";
   const logo = siteUrl ? `${siteUrl}/logo.svg` : "/logo.svg";
   const telephone = "+421 911 712 109";
   const email = "spartans@spartans.sk";
@@ -101,7 +101,7 @@ export default function Head() {
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={ogImage} />
       {/* Preconnects and preloads to improve LCP */}
-      <link rel="preload" as="image" href="/vincent.png" />
+      <link rel="preload" as="image" href="/logo.svg" />
       <link rel="preconnect" href="https://www.google.com" />
       <link rel="preconnect" href="https://maps.google.com" />
       {/* JSON-LD structured data */}
