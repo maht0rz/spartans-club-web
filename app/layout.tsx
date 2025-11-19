@@ -15,6 +15,84 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   const [splashIn, setSplashIn] = React.useState(false);
   const [splashOut, setSplashOut] = React.useState(false);
 
+  // SEO constants (client-safe NEXT_PUBLIC envs are inlined at build time)
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+  const title = "Spartans Muay Thai Bratislava | Deti, Dospelí, VIP & Súkromné tréningy";
+  const description =
+    "Trénujte Muay Thai v Bratislave s hlavným inštruktorom Vincentom Kolekom (viac ako 30 rokov skúseností). VIP ranné tréningy, detské hodiny, klubové tréningy a súkromné lekcie. Bezplatné parkovanie, moderná telocvičňa a podporná komunita.";
+  const ogImage = siteUrl ? `${siteUrl}/logo.png` : "/logo.png";
+  const logo = siteUrl ? `${siteUrl}/logo.png` : "/logo.png";
+  const telephone = "+421 911 712 109";
+  const email = "spartans@spartans.sk";
+  const address = {
+    streetAddress: "Mlynské nivy 54",
+    postalCode: "821 09",
+    addressLocality: "Ružinov, Bratislava",
+    addressCountry: "SK",
+  };
+  const sameAs = [
+    "https://instagram.com/spartansclubbratislava",
+    "https://facebook.com/spartansclub.sk",
+    "https://www.tiktok.com/@spartansclubbratislava",
+  ];
+  const localBusinessLd = {
+    "@context": "https://schema.org",
+    "@type": "SportsActivityLocation",
+    name: "Spartans Club Bratislava",
+    url: siteUrl || undefined,
+    image: ogImage,
+    telephone,
+    email,
+    priceRange: "$$",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: address.streetAddress,
+      postalCode: address.postalCode,
+      addressLocality: address.addressLocality,
+      addressCountry: address.addressCountry,
+    },
+    sameAs,
+    areaServed: "Bratislava",
+  };
+  const organizationLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "Spartans Club Bratislava",
+    url: siteUrl || undefined,
+    logo,
+    sameAs,
+  };
+  const faqLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "Potrebujem predchádzajúce skúsenosti?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Skúsenosti nie sú potrebné. Začiatočníci sú vítaní. Tréningy prispôsobujeme vašej úrovni a zameriavame sa najskôr na základy.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Ako často by som mal tréningy absolvovať?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "2–3 tréningy týždenne sú ideálne na začiatok. Ako sa vaša technika a kondícia zlepšujú, niektorí športovci trénujú 4–5× týždenne.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Je Muay Thai bezpečné?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Bezpečnosť je prioritou. Dbáme na správnu techniku, kontrolované cvičenia, vhodné ochranné pomôcky a postupné zvyšovanie intenzity.",
+        },
+      },
+    ],
+  };
+
   React.useEffect(() => {
     const ids: Array<"top" | "way-of-life" | "sessions" | "testimonials" | "private-coaching" | "about" | "gallery"> = ["top", "way-of-life", "sessions", "testimonials", "private-coaching", "about", "gallery"];
     function computeActive() {
@@ -105,12 +183,39 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <head>
       <meta name="google-site-verification" content="6BudQ4yOWOQzLJyUGI98HPtaQJz1ohCxLY8NEnHBfJc" />
+      <meta charSet="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <title>{title}</title>
+      <meta name="description" content={description} />
+      <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1" />
+      <meta name="theme-color" content="#000000" />
+      {siteUrl ? <link rel="canonical" href={siteUrl} /> : null}
+      <link rel="icon" href="/logo.png" />
+      <link rel="apple-touch-icon" href="/logo.png" />
+      <meta property="og:type" content="website" />
+      <meta property="og:site_name" content="Spartans Club Bratislava" />
+      <meta property="og:title" content={title} />
+      <meta property="og:description" content={description} />
+      <meta property="og:image" content={ogImage} />
+      {siteUrl ? <meta property="og:url" content={siteUrl} /> : null}
+      <meta property="og:locale" content="sk_SK" />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content={title} />
+      <meta name="twitter:description" content={description} />
+      <meta name="twitter:image" content={ogImage} />
+      <link rel="preload" as="image" href="/logo.png" />
+      <link rel="preload" as="font" href="/fonts/Goodland Bold.otf" type="font/otf" crossOrigin="anonymous" />
+      <link rel="preconnect" href="https://www.google.com" />
+      <link rel="preconnect" href="https://maps.google.com" />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }} />
       </head>
       <body>
         {/* Splash screen */}
         {/* <div className={`fixed inset-0 z-[2000] flex items-center justify-center bg-white dark:bg-black transition-opacity duration-[800ms] ease-out ${splashOut ? "opacity-0 pointer-events-none" : "opacity-100"}`}>
           <img
-            src="/logo.svg"
+            src="/logo.png"
             alt="Spartans logo"
             className={`transition-transform transition-opacity duration-[800ms] ease-in-out ${
               splashIn && !splashOut ? "opacity-100 scale-[1.15]" : splashOut ? "opacity-0 scale-[1.6]" : "opacity-0 scale-90"

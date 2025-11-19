@@ -14,6 +14,8 @@ const PUBLIC_DIR = path.join(ROOT, "public");
 const MAX_DIMENSION = 2000; // Prevent extremely large originals
 const SUPPORTED_EXTS = new Set([".jpg", ".jpeg", ".png"]);
 const SKIP_DIR_NAMES = new Set(["fonts"]); // keep font assets untouched
+const TRAINERS_DIR_SEGMENT = `${path.sep}public${path.sep}trainers${path.sep}`;
+const TRAINER_TARGET = { width: 634, height: 979 }; // portrait target
 
 function isImageFile(filePath) {
   const ext = path.extname(filePath).toLowerCase();
@@ -42,13 +44,24 @@ async function optimizeImage(filePath) {
   const meta = await input.metadata();
 
   let pipeline = sharp(originalBuffer);
-  // Constrain excessively large images to MAX_DIMENSION while preserving aspect
-  pipeline = pipeline.resize({
-    width: MAX_DIMENSION,
-    height: MAX_DIMENSION,
-    fit: "inside",
-    withoutEnlargement: true
-  });
+  // Special handling: normalize trainer portraits to a consistent portrait size
+  if (filePath.includes(TRAINERS_DIR_SEGMENT)) {
+    pipeline = pipeline.resize({
+      width: TRAINER_TARGET.width,
+      height: TRAINER_TARGET.height,
+      fit: "cover",
+      position: "attention",
+      withoutEnlargement: true
+    });
+  } else {
+    // Constrain excessively large images to MAX_DIMENSION while preserving aspect
+    pipeline = pipeline.resize({
+      width: MAX_DIMENSION,
+      height: MAX_DIMENSION,
+      fit: "inside",
+      withoutEnlargement: true
+    });
+  }
 
   if (ext === ".jpg" || ext === ".jpeg") {
     pipeline = pipeline.jpeg({

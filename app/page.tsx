@@ -147,9 +147,12 @@ export default function HomePage() {
             <img
               src="/vincent.png"
               alt="Headcoach Vincent Kolek"
-              className="object-cover object-center w-full h-full"
+              className="object-center w-full"
               loading="eager"
               fetchPriority="high"
+              width={634}
+              height={979}
+              decoding="async"
             />
           </div>
         </Container>
