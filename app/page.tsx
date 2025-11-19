@@ -115,7 +115,7 @@ export default function HomePage() {
       <section id="top" className="py-16 scroll-mt-24 hero">
         <Container className="grid grid-cols-1 md:grid-cols-[1.4fr_.6fr] gap-10 items-center">
           <div className="order-2 md:order-1">
-            <div className="inline-flex items-center gap-2 rounded-full border border-black/15 bg-black/5 text-muted-foreground text-xs px-3 py-2">
+            <div className="inline-flex items-center gap-2 rounded-full border border-black/15 bg-black/5 text-muted-foreground text-xs px-3 py-2 mb-2">
               {t("hero.eyebrow")}
             </div>
             <h1 className="font-display font-bold text-4xl md:text-6xl leading-[1.05] mt-3">
@@ -146,9 +146,10 @@ export default function HomePage() {
           <div className="hero-image order-1 md:order-2 relative">
             <img
               src="/vincent.png"
-              alt="Call Vincent"
+              alt="Headcoach Vincent Kolek"
               className="object-cover object-center w-full h-full"
               loading="eager"
+              fetchPriority="high"
             />
           </div>
         </Container>
