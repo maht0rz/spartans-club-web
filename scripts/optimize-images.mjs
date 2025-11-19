@@ -16,6 +16,12 @@ const SUPPORTED_EXTS = new Set([".jpg", ".jpeg", ".png"]);
 const SKIP_DIR_NAMES = new Set(["fonts"]); // keep font assets untouched
 const TRAINERS_DIR_SEGMENT = `${path.sep}public${path.sep}trainers${path.sep}`;
 const TRAINER_TARGET = { width: 634, height: 979 }; // portrait target
+const GALLERY_DIR_SEGMENT = `${path.sep}public${path.sep}gallery${path.sep}`;
+const HERO_BASENAME = "vincent";
+const RESPONSIVE_SUFFIX = (w) => `-${w}w`;
+const HERO_WIDTHS = [480, 768, 1024, 1280];
+const GALLERY_WIDTHS = [480, 768, 1024, 1536];
+const TRAINER_WIDTHS = [634, 1268]; // 1x and 2x
 
 function isImageFile(filePath) {
   const ext = path.extname(filePath).toLowerCase();
@@ -100,6 +106,60 @@ async function optimizeImage(filePath) {
   }
 }
 
+async function generateVariant(basePath, width, options = {}) {
+  const ext = path.extname(basePath);
+  const baseName = path.basename(basePath, ext);
+  const dir = path.dirname(basePath);
+  const targetPath = path.join(dir, `${baseName}${RESPONSIVE_SUFFIX(width)}${ext}`);
+  const input = await fs.readFile(basePath);
+  let pipeline = sharp(input).resize({
+    width,
+    height: options.height ?? undefined,
+    fit: options.fit ?? (options.height ? "cover" : "inside"),
+    position: options.position ?? "attention",
+    withoutEnlargement: true
+  });
+  if (ext === ".jpg" || ext === ".jpeg") {
+    pipeline = pipeline.jpeg({ quality: 50, mozjpeg: true, progressive: true, chromaSubsampling: "4:4:4" });
+  } else if (ext === ".png") {
+    pipeline = pipeline.png({ quality: 50, compressionLevel: 9, palette: true });
+  }
+  const out = await pipeline.toBuffer();
+  // Only write if different or doesn't exist
+  try {
+    const existing = await fs.readFile(targetPath);
+    if (existing.length <= out.length) return { created: false, path: targetPath };
+  } catch {
+    // file doesn't exist
+  }
+  await fs.writeFile(targetPath, out);
+  return { created: true, path: targetPath };
+}
+
+async function generateResponsiveVariantsIfNeeded(filePath) {
+  // Gallery set
+  if (filePath.includes(GALLERY_DIR_SEGMENT)) {
+    await Promise.all(GALLERY_WIDTHS.map((w) => generateVariant(filePath, w)));
+    return true;
+  }
+  // Trainers (fixed portrait)
+  if (filePath.includes(TRAINERS_DIR_SEGMENT)) {
+    await Promise.all(
+      TRAINER_WIDTHS.map((w) =>
+        generateVariant(filePath, w, { height: Math.round((TRAINER_TARGET.height / TRAINER_TARGET.width) * w), fit: "cover" })
+      )
+    );
+    return true;
+  }
+  // Hero single asset by basename
+  const base = path.basename(filePath, path.extname(filePath)).toLowerCase();
+  if (base === HERO_BASENAME) {
+    await Promise.all(HERO_WIDTHS.map((w) => generateVariant(filePath, w)));
+    return true;
+  }
+  return false;
+}
+
 function formatBytes(bytes) {
   if (bytes < 1024) return `${bytes} B`;
   const kb = bytes / 1024;
@@ -127,6 +187,11 @@ async function main() {
         console.log(
           `Optimized: ${path.relative(ROOT, filePath)} (-${formatBytes(saved)})`
         );
+      }
+      // Generate responsive variants for known sets
+      const didVariants = await generateResponsiveVariantsIfNeeded(filePath);
+      if (didVariants) {
+        console.log(`Variants generated for: ${path.relative(ROOT, filePath)}`);
       }
     }
 

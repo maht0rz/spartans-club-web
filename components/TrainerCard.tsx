@@ -36,9 +36,15 @@ export default function TrainerCard({ trainer }: { trainer: Trainer }) {
     <Card className="p-4 h-full group flex flex-col min-h-[480px] md:min-h-[530px]">
       <div className="-mx-4 -mt-4 mb-3 h-[400px] md:h-[360px] min-h-[400px] md:min-h-[360px] overflow-hidden bg-primary relative">
         <img
-          src={trainer.image || "/vincent.png"}
+          src={(trainer.image || "/vincent.png").replace(/(\.\w+)$/, "-634w$1")}
+          srcSet={`${(trainer.image || "/vincent.png").replace(/(\.\w+)$/, "-634w$1")} 634w, ${(trainer.image || "/vincent.png").replace(/(\.\w+)$/, "-1268w$1")} 1268w`}
+          sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
           alt="Trainer portrait"
           className="object-cover object-center w-full h-full"
+          width={634}
+          height={979}
+          decoding="async"
+          loading="lazy"
         />
       </div>
       <div className="flex-1">

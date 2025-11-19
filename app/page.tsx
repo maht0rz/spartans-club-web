@@ -145,7 +145,9 @@ export default function HomePage() {
           </div>
           <div className="hero-image order-1 md:order-2 relative">
             <img
-              src="/vincent.png"
+              src="/vincent-768w.png"
+              srcSet="/vincent-480w.png 480w, /vincent-768w.png 768w, /vincent-1024w.png 1024w, /vincent-1280w.png 1280w"
+              sizes="(min-width: 768px) 40vw, 100vw"
               alt="Headcoach Vincent Kolek"
               className="object-center w-full"
               loading="eager"
@@ -754,7 +756,9 @@ export default function HomePage() {
                 {visibleImages.map((src, idx) => (
                   <div key={src} className="w-full overflow-hidden relative">
                     <img
-                      src={src}
+                      src={src.replace(/(\.\w+)$/, "-768w$1")}
+                      srcSet={`${src.replace(/(\.\w+)$/, "-480w$1")} 480w, ${src.replace(/(\.\w+)$/, "-768w$1")} 768w, ${src.replace(/(\.\w+)$/, "-1024w$1")} 1024w, ${src.replace(/(\.\w+)$/, "-1536w$1")} 1536w`}
+                      sizes="(min-width: 640px) 50vw, 100vw"
                       alt={`Gallery image ${showAllGallery ? idx + 1 : idx + 1}`}
                       className="object-cover w-full h-full"
                       loading="lazy"
