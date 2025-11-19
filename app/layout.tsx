@@ -1,6 +1,8 @@
+/** @jsxImportSource react */
 "use client";
 import "./globals.css";
 import React from "react";
+import Link from "next/link";
 import I18nProvider from "../components/I18nProvider";
 import LanguageSelector from "../components/LanguageSelector";
 import { ensureI18n } from "../lib/i18n";
@@ -93,41 +95,68 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     ],
   };
 
-  React.useEffect(() => {
-    const ids: Array<"top" | "way-of-life" | "sessions" | "testimonials" | "private-coaching" | "about" | "gallery"> = ["top", "way-of-life", "sessions", "testimonials", "private-coaching", "about", "gallery"];
-    function computeActive() {
-      const headerEl = document.querySelector("header");
-      const headerH = headerEl instanceof HTMLElement ? headerEl.offsetHeight : 0;
-      let nearestId: "top" | "way-of-life" | "sessions" | "testimonials" | "private-coaching" | "about" | "gallery" = "top";
-      let nearestDist = Number.POSITIVE_INFINITY;
-      ids.forEach((id) => {
-        const el = document.getElementById(id);
-        if (!el) return;
-        const rect = el.getBoundingClientRect();
-        const dist = Math.abs(rect.top - headerH);
-        if (dist < nearestDist) {
-          nearestDist = dist;
-          nearestId = id;
-        }
-      });
-      setActive(nearestId);
-    }
-    let ticking = false;
-    const onScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          computeActive();
-          ticking = false;
-        });
-        ticking = true;
-      }
+  // Breadcrumbs schema based on current path
+  const pathToBreadcrumbs: Record<string, Array<{ name: string; url: string }>> = {
+    "/": [{ name: "Domov", url: siteUrl || "/" }],
+    "/sessions": [
+      { name: "Domov", url: siteUrl || "/" },
+      { name: "Rozvrh", url: (siteUrl || "") + "/sessions" },
+    ],
+    "/way-of-life": [
+      { name: "Domov", url: siteUrl || "/" },
+      { name: "Way Of Life", url: (siteUrl || "") + "/way-of-life" },
+    ],
+    "/testimonials": [
+      { name: "Domov", url: siteUrl || "/" },
+      { name: "Referencie", url: (siteUrl || "") + "/testimonials" },
+    ],
+    "/private-coaching": [
+      { name: "Domov", url: siteUrl || "/" },
+      { name: "Súkromné tréningy", url: (siteUrl || "") + "/private-coaching" },
+    ],
+    "/about": [
+      { name: "Domov", url: siteUrl || "/" },
+      { name: "O nás", url: (siteUrl || "") + "/about" },
+    ],
+    "/gallery": [
+      { name: "Domov", url: siteUrl || "/" },
+      { name: "Galéria", url: (siteUrl || "") + "/gallery" },
+    ],
+  };
+  const currentPath =
+    typeof window !== "undefined" ? window.location.pathname : "/";
+  const breadcrumbsLd =
+    pathToBreadcrumbs[currentPath] &&
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: pathToBreadcrumbs[currentPath].map((b, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        name: b.name,
+        item: b.url,
+      })),
     };
-    computeActive();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
+
+  React.useEffect(() => {
+    const path = typeof window !== "undefined" ? window.location.pathname : "/";
+    const map: Record<string, typeof active> = {
+      "/": "top",
+      "/sessions": "sessions",
+      "/way-of-life": "way-of-life",
+      "/testimonials": "testimonials",
+      "/private-coaching": "private-coaching",
+      "/about": "about",
+      "/gallery": "gallery",
+    };
+    setActive(map[path] ?? "top");
+    const onPop = () => {
+      const p = window.location.pathname;
+      setActive(map[p] ?? "top");
+    };
+    window.addEventListener("popstate", onPop);
     return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
+      window.removeEventListener("popstate", onPop);
     };
   }, []);
 
@@ -169,13 +198,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   }
 
   const navItems: Array<{ id: "top" | "way-of-life" | "sessions" | "testimonials" | "private-coaching" | "gallery" | "contact" | "about" | "shop"; labelKey: string; href: string, target?: string }> = [
-    { id: "top", labelKey: "nav.home", href: "#top" },
-    { id: "sessions", labelKey: "nav.sessions", href: "#sessions" },
-    { id: "way-of-life", labelKey: "nav.wayoflife", href: "#way-of-life" },
-    { id: "testimonials", labelKey: "nav.testimonials", href: "#testimonials" },
-    { id: "private-coaching", labelKey: "nav.private", href: "#private-coaching" },
-    { id: "about", labelKey: "nav.about", href: "#about" },
-    { id: "gallery", labelKey: "nav.gallery", href: "#gallery" },
+    { id: "top", labelKey: "nav.home", href: "/" },
+    { id: "sessions", labelKey: "nav.sessions", href: "/sessions" },
+    { id: "way-of-life", labelKey: "nav.wayoflife", href: "/way-of-life" },
+    { id: "testimonials", labelKey: "nav.testimonials", href: "/testimonials" },
+    { id: "private-coaching", labelKey: "nav.private", href: "/private-coaching" },
+    { id: "about", labelKey: "nav.about", href: "/about" },
+    { id: "gallery", labelKey: "nav.gallery", href: "/gallery" },
     // { id: "shop", labelKey: "nav.shop", href: "https://shop.spartans.sk", target: "_blank" },
   ];
 
@@ -210,6 +239,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }} />
+      {breadcrumbsLd ? (
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbsLd) }} />
+      ) : null}
       </head>
       <body>
         {/* Splash screen */}
@@ -234,11 +266,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 </div>
                 
               </div>
-              <nav className="hidden lg:flex items-center gap-1">
+                <nav className="hidden lg:flex items-center gap-1">
                   {navItems.map((item) => (
-                    <a
+                    <Link
                       key={item.id}
                       href={item.href}
+                      scroll={false}
                       className={`text-md px-3 py-2 rounded-md hover:text-primary ${
                         active === item.id ? "text-primary font-semibold" : "text-muted-foreground hover:text-foreground"
                       }`}
@@ -246,7 +279,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                       target={item.target ?? undefined}
                     >
                       {ensureI18n().t(item.labelKey)}
-                    </a>
+                    </Link>
                   ))}
                 </nav>
               <div className="flex items-center gap-2">
@@ -332,9 +365,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <div className="rounded-lg border border-black/10 bg-white shadow-lg p-2">
                   <nav className="flex flex-col">
                     {navItems.map((item) => (
-                      <a
+                      <Link
                         key={item.id}
                         href={item.href}
+                        scroll={false}
                         className={`px-3 py-2 rounded-md ${
                           active === item.id ? "text-foreground font-semibold" : "text-muted-foreground hover:text-foreground hover:bg-black/5"
                         }`}
@@ -344,7 +378,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                         }}
                       >
                         {ensureI18n().t(item.labelKey)}
-                      </a>
+                      </Link>
                     ))}
                   </nav>
                   <div className="mt-2 flex items-center gap-2">

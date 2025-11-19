@@ -2,6 +2,7 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 import React from "react";
+import Link from "next/link";
 import { useTranslation, Trans } from "react-i18next";
 import Container from "../components/Container";
 import { Button } from "../components/ui/button";
@@ -130,9 +131,9 @@ export default function HomePage() {
               }}
             />
             <div className="flex gap-3 flex-wrap mt-5">
-              <a href="#sessions">
+              <Link href="/sessions" scroll={false}>
                 <Button>{t("hero.cta.sessions")}</Button>
-              </a>
+              </Link>
               <a href={`tel:${t("about.phone")}`}>
                 <Button variant="outline" className="inline-flex items-center gap-2">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
