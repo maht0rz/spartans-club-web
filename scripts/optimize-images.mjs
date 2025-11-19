@@ -52,7 +52,7 @@ async function optimizeImage(filePath) {
 
   if (ext === ".jpg" || ext === ".jpeg") {
     pipeline = pipeline.jpeg({
-      quality: 75,
+      quality: 50,
       mozjpeg: true,
       progressive: true,
       chromaSubsampling: "4:4:4"
@@ -60,7 +60,7 @@ async function optimizeImage(filePath) {
   } else if (ext === ".png") {
     // palette reduces color depth where possible, big wins for logos
     pipeline = pipeline.png({
-      quality: 80,
+      quality: 50,
       compressionLevel: 9,
       palette: true
     });
