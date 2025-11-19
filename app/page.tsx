@@ -12,6 +12,7 @@ import { cn } from "../lib/utils";
 import trainersData from "../data/trainers.json";
 import sponsorsData from "../data/sponsors.json";
 import pricingData from "../data/pricing.json";
+ 
 
 function useInView<T extends HTMLElement>(options?: IntersectionObserverInit) {
   const ref = React.useRef<T | null>(null);
@@ -111,7 +112,7 @@ export default function HomePage() {
     i18n.language && i18n.language.toLowerCase().startsWith("sk") ? "sk" : "en";
   return (
     <main>
-      <section id="top" className="py-16 scroll-mt-24">
+      <section id="top" className="py-16 scroll-mt-24 hero">
         <Container className="grid grid-cols-1 md:grid-cols-[1.4fr_.6fr] gap-10 items-center">
           <div className="order-2 md:order-1">
             <div className="inline-flex items-center gap-2 rounded-full border border-black/15 bg-black/5 text-muted-foreground text-xs px-3 py-2">
@@ -142,8 +143,13 @@ export default function HomePage() {
               </a>
             </div>
           </div>
-          <div className="hero-image order-1 md:order-2">
-            <img src="/vincent.png"/>
+          <div className="hero-image order-1 md:order-2 relative">
+            <img
+              src="/vincent.png"
+              alt="Call Vincent"
+              className="object-cover object-center w-full h-full"
+              loading="eager"
+            />
           </div>
         </Container>
       </section>
@@ -742,11 +748,11 @@ export default function HomePage() {
             <>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-white dark:bg-white mt-4 auto-rows-fr">
                 {visibleImages.map((src, idx) => (
-                  <div key={src} className="w-full overflow-hidden">
+                  <div key={src} className="w-full overflow-hidden relative">
                     <img
                       src={src}
                       alt={`Gallery image ${showAllGallery ? idx + 1 : idx + 1}`}
-                      className="w-full h-full object-cover block"
+                      className="object-cover w-full h-full"
                       loading="lazy"
                     />
                   </div>

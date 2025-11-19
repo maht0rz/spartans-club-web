@@ -1,7 +1,9 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { Card } from "./ui/card";
+ 
 
 export type Trainer = {
   name: string;
@@ -32,8 +34,12 @@ export default function TrainerCard({ trainer }: { trainer: Trainer }) {
   };
   return (
     <Card className="p-4 h-full group flex flex-col min-h-[480px] md:min-h-[530px]">
-      <div className="-mx-4 -mt-4 mb-3 h-[400px] md:h-[360px] min-h-[400px] md:min-h-[360px] flex items-center justify-center overflow-hidden bg-primary">
-        <img src={trainer.image || "/vincent.png"} alt="Trainer portrait" className="w-full h-full object-cover object-center" />
+      <div className="-mx-4 -mt-4 mb-3 h-[400px] md:h-[360px] min-h-[400px] md:min-h-[360px] overflow-hidden bg-primary relative">
+        <img
+          src={trainer.image || "/vincent.png"}
+          alt="Trainer portrait"
+          className="object-cover object-center w-full h-full"
+        />
       </div>
       <div className="flex-1">
         <h3 className="font-display font-extrabold text-xl md:text-2xl tracking-wide m-0">{trainer.name}</h3>

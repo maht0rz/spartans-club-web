@@ -195,7 +195,9 @@ header.site-header {
   margin: 0 0 14px;
   letter-spacing: .4px;
   font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+  white-space: pre-line;
 }
+
 .eyebrow {
   display: inline-flex;
   align-items: center;

@@ -103,6 +103,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
   return (
     <html lang="en">
+      <head>
+      <meta name="google-site-verification" content="6BudQ4yOWOQzLJyUGI98HPtaQJz1ohCxLY8NEnHBfJc" />
+      </head>
       <body>
         {/* Splash screen */}
         {/* <div className={`fixed inset-0 z-[2000] flex items-center justify-center bg-white dark:bg-black transition-opacity duration-[800ms] ease-out ${splashOut ? "opacity-0 pointer-events-none" : "opacity-100"}`}>
@@ -157,7 +160,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                     </svg>
                   </a>
                   <a
-                    href="https://facebook.com/spartansclubbratislava"
+                    href="https://facebook.com/spartansclub.sk"
                     target="_blank"
                     rel="noreferrer"
                     aria-label="Facebook"
