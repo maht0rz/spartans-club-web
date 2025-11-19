@@ -20,7 +20,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   const title = "Spartans Muay Thai Bratislava | Deti, Dospelí, VIP & Súkromné tréningy";
   const description =
     "Trénujte Muay Thai v Bratislave s hlavným inštruktorom Vincentom Kolekom (viac ako 30 rokov skúseností). VIP ranné tréningy, detské hodiny, klubové tréningy a súkromné lekcie. Bezplatné parkovanie, moderná telocvičňa a podporná komunita.";
-  const ogImage = siteUrl ? `${siteUrl}/logo.png` : "/logo.png";
+  const ogImage = siteUrl ? `${siteUrl}/logo-large.png` : "/logo-large.png";
   const logo = siteUrl ? `${siteUrl}/logo.png` : "/logo.png";
   const telephone = "+421 911 712 109";
   const email = "spartans@spartans.sk";
