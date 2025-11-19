@@ -160,6 +160,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     };
   }, []);
 
+  
+
   // Initialize theme from storage or system preference
   React.useEffect(() => {
     try {
@@ -208,6 +210,57 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     // { id: "shop", labelKey: "nav.shop", href: "https://shop.spartans.sk", target: "_blank" },
   ];
 
+  // Sync URL to section on scroll (smoothly update path without jumping)
+  React.useEffect(() => {
+    const ids: Array<"top" | "way-of-life" | "sessions" | "testimonials" | "private-coaching" | "about" | "gallery"> = [
+      "top",
+      "way-of-life",
+      "sessions",
+      "testimonials",
+      "private-coaching",
+      "about",
+      "gallery",
+    ];
+    const idToPath = new Map<string, string>(navItems.map((n) => [n.id, n.href]));
+    function computeAndSync() {
+      const headerEl = document.querySelector("header");
+      const headerH = headerEl instanceof HTMLElement ? headerEl.offsetHeight : 0;
+      let nearestId: typeof active = "top";
+      let nearestDist = Number.POSITIVE_INFINITY;
+      ids.forEach((id) => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        const rect = el.getBoundingClientRect();
+        const dist = Math.abs(rect.top - headerH);
+        if (dist < nearestDist) {
+          nearestDist = dist;
+          nearestId = id;
+        }
+      });
+      const desiredPath = idToPath.get(nearestId) || "/";
+      if (window.location.pathname !== desiredPath) {
+        window.history.replaceState(null, "", desiredPath);
+      }
+      setActive(nearestId);
+    }
+    let ticking = false;
+    const onScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          computeAndSync();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+    computeAndSync();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, []);
   return (
     <html lang="en">
       <head>
