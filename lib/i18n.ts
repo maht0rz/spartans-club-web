@@ -26,21 +26,17 @@ export function ensureI18n(): I18nInstance {
       .use(initReactI18next)
       .init({
         resources: {
-          en: { common: en,  },
+          en: { common: en },
           sk: { common: sk }
         },
         lng: getInitialLanguage(),
         fallbackLng: "sk",
         ns: ["common", "shared"],
         defaultNS: "common",
-        interpolation: { escapeValue: false }
-      })
-      .then(() => {
-        initialized = true;
-      })
-      .catch(() => {
-        // swallow init errors for now
+        interpolation: { escapeValue: false },
+        initImmediate: false
       });
+    initialized = true;
   }
   return i18next;
 }

@@ -117,7 +117,7 @@ export default function HomePage() {
     i18n.language && i18n.language.toLowerCase().startsWith("sk") ? "sk" : "en";
   return (
     <main>
-      <section id="top" className="py-16 scroll-mt-24 hero relative">
+      <section id="top" className="py-16 scroll-mt-12 hero relative">
         <Container className="grid grid-cols-1 md:grid-cols-[1.4fr_.6fr] gap-7 items-center">
           <div
             className="order-2 md:order-1"
@@ -260,7 +260,7 @@ export default function HomePage() {
 
       <section
         id="sessions"
-        className="py-12 md:py-12 scroll-mt-24 section-trainings"
+        className="py-12 md:py-12 scroll-mt-12 section-trainings"
       >
         <Container>
           <h2 className="font-display font-extrabold text-4xl md:text-4xl uppercase">
@@ -536,7 +536,7 @@ export default function HomePage() {
       </section>
       
       {/* Reasons to start Muay Thai (accordion) */}
-      <section id="way-of-life" className="py-12 scroll-mt-24">
+      <section id="way-of-life" className="py-12 scroll-mt-12">
         <Container>
           <div className="mt-4"></div>
           <h2 className="font-display font-extrabold text-4xl md:text-4xl uppercase">
@@ -597,7 +597,7 @@ export default function HomePage() {
         </Container>
       </section>
       
-      <section id="testimonials" className="py-12 md:py-16 scroll-mt-24">
+      <section id="testimonials" className="py-12 md:py-16 scroll-mt-12">
         <Container>
           <h2 className="font-display font-extrabold text-4xl md:text-4xl uppercase">
             {t("testimonials.title")}
@@ -673,7 +673,7 @@ export default function HomePage() {
         </Container>
       </section>
 
-      <section id="private-coaching" className="py-10 scroll-mt-24">
+      <section id="private-coaching" className="py-12 scroll-mt-12">
         <Container>
           <h2 className="font-display font-extrabold text-4xl md:text-4xl uppercase">
             {t("private.title")}
@@ -705,7 +705,7 @@ export default function HomePage() {
         </Container>
       </section>
 
-      <section id="about" className="py-16 scroll-mt-24">
+      <section id="about" className="py-12 scroll-mt-12">
         <Container>
           <h2 className="font-display font-extrabold text-4xl md:text-4xl uppercase">
             {t("about.title")}
@@ -757,7 +757,7 @@ export default function HomePage() {
         </Container>
       </section>
 
-      <section id="gallery" className="py-16 scroll-mt-24 relative">
+      <section id="gallery" className="py-12 scroll-mt-12 relative">
         <Container>
         <h2 className="font-display font-extrabold text-4xl md:text-4xl uppercase">
             {t("gallery.title")}
@@ -782,7 +782,7 @@ export default function HomePage() {
         {(() => {
           const images = Array.from({ length: 8 }, (_, i) => `/gallery/${i + 1}.jpg`);
           const [showAllGallery, setShowAllGallery] = React.useState(false);
-          const visibleImages = showAllGallery ? images : images.slice(1, 5);
+          const visibleImages = showAllGallery ? images : images.slice(0, 4);
           return (
             <>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-white dark:bg-white mt-4 auto-rows-fr">
@@ -790,13 +790,12 @@ export default function HomePage() {
                   <div
                     key={src}
                     className="w-full overflow-hidden relative"
-                    // previously animated on scroll; animations removed
                   >
                     <img
                       src={src.replace(/(\.\w+)$/, "-768w$1")}
                       srcSet={`${src.replace(/(\.\w+)$/, "-480w$1")} 480w, ${src.replace(/(\.\w+)$/, "-768w$1")} 768w, ${src.replace(/(\.\w+)$/, "-1024w$1")} 1024w, ${src.replace(/(\.\w+)$/, "-1536w$1")} 1536w`}
                       sizes="(min-width: 640px) 50vw, 100vw"
-                      alt={`Gallery image ${showAllGallery ? idx + 1 : idx + 1}`}
+                      alt={`Gallery image ${idx + 1}`}
                       className="object-cover w-full h-full"
                       loading="lazy"
                     />
@@ -833,7 +832,7 @@ export default function HomePage() {
       </section>
 
       {/* Sponsors */}
-      <section id="sponsors" className="py-12 scroll-mt-24">
+      <section id="sponsors" className="py-12 pb-36 scroll-mt-12">
         <Container>
           <h2 className="font-display font-extrabold text-4xl md:text-4xl uppercase">
             {t("sponsors.title")}

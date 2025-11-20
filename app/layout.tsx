@@ -256,19 +256,26 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     if (typeof window === "undefined") return;
     try {
       if (window.location.pathname !== href) {
-        window.history.pushState(null, "", href);
+        window.history.replaceState(null, "", href);
       }
     } catch {
       // ignore history errors
     }
+    if (id === "top") {
+      // Special case: always scroll to absolute top
+      window.scrollTo(0, 0);
+      return;
+    }
     const el = document.getElementById(id);
     if (!el) return;
-    const headerEl = document.querySelector("header");
-    const headerH = headerEl instanceof HTMLElement ? headerEl.offsetHeight : 0;
-    const rect = el.getBoundingClientRect();
-    const top = window.scrollY + rect.top - headerH - 8;
-    // Instant jump (no smooth scrolling animation)
-    window.scrollTo(0, top);
+    // Use scrollIntoView so Tailwind's scroll-mt-* offsets are respected
+    try {
+      el.scrollIntoView({ block: "start", behavior: "auto" });
+    } catch {
+      const rect = el.getBoundingClientRect();
+      const top = window.scrollY + rect.top;
+      window.scrollTo(0, top);
+    }
   }
 
   // Sync URL to section on scroll (smoothly update path without jumping)
@@ -448,24 +455,38 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 
               </div>
                 <nav className="hidden lg:flex items-center gap-1">
-                  {navItems.map((item) => (
-                    <a
-                      key={item.id}
-                      href={item.href}
-                      className={`text-md px-3 py-2 rounded-md hover:text-primary ${
-                        active === item.id ? "text-primary font-semibold" : "text-muted-foreground hover:text-foreground"
-                      }`}
-                      onClick={(e) => {
-                        if (item.target) return;
-                        e.preventDefault();
-                        setActive(item.id);
-                        navigateToSection(item.id, item.href);
-                      }}
-                      target={item.target ?? undefined}
-                    >
-                      {ensureI18n().t(item.labelKey)}
-                    </a>
-                  ))}
+                  {navItems.map((item) => {
+                    if (item.target) {
+                      return (
+                        <a
+                          key={item.id}
+                          href={item.href}
+                          target={item.target}
+                          rel="noreferrer"
+                          className={`text-md px-3 py-2 rounded-md hover:text-primary ${
+                            active === item.id ? "text-primary font-semibold" : "text-muted-foreground hover:text-foreground"
+                          }`}
+                        >
+                          {ensureI18n().t(item.labelKey)}
+                        </a>
+                      );
+                    }
+                    return (
+                      <button
+                        key={item.id}
+                        type="button"
+                        className={`text-md px-3 py-2 rounded-md hover:text-primary ${
+                          active === item.id ? "text-primary font-semibold" : "text-muted-foreground hover:text-foreground"
+                        }`}
+                        onClick={() => {
+                          setActive(item.id);
+                          navigateToSection(item.id, item.href);
+                        }}
+                      >
+                        {ensureI18n().t(item.labelKey)}
+                      </button>
+                    );
+                  })}
                 </nav>
               <div className="flex items-center gap-2">
                 <div className="hidden lg:flex items-center gap-2">
@@ -570,23 +591,39 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <div className="lg:hidden px-4 pb-4">
                 <div className="rounded-lg border border-black/10 bg-white shadow-lg p-2">
                   <nav className="flex flex-col">
-                    {navItems.map((item) => (
-                      <a
+                  {navItems.map((item) => {
+                    if (item.target) {
+                      return (
+                        <a
+                          key={item.id}
+                          href={item.href}
+                          target={item.target}
+                          rel="noreferrer"
+                          className={`px-3 py-2 rounded-md ${
+                            active === item.id ? "text-foreground font-semibold" : "text-muted-foreground hover:text-foreground hover:bg-black/5"
+                          }`}
+                        >
+                          {ensureI18n().t(item.labelKey)}
+                        </a>
+                      );
+                    }
+                    return (
+                      <button
                         key={item.id}
-                        href={item.href}
+                        type="button"
                         className={`px-3 py-2 rounded-md ${
                           active === item.id ? "text-foreground font-semibold" : "text-muted-foreground hover:text-foreground hover:bg-black/5"
                         }`}
                         onClick={() => {
-                          if (item.target) return;
                           setActive(item.id);
                           setMobileOpen(false);
                           navigateToSection(item.id, item.href);
                         }}
                       >
                         {ensureI18n().t(item.labelKey)}
-                      </a>
-                    ))}
+                      </button>
+                    );
+                  })}
                   </nav>
                   <div className="mt-2 flex items-center gap-2">
                     <a
