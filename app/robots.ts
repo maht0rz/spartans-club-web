@@ -1,7 +1,10 @@
 import type { MetadataRoute } from "next";
 
 export default function robots(): MetadataRoute.Robots {
-  const base = (process.env.NEXT_PUBLIC_SITE_URL || "https://spartans-club.netlify.app/").replace(/\/+$/, "");
+  let base = (process.env.NEXT_PUBLIC_SITE_URL || "https://spartans-club.netlify.app/").replace(/\/+$/, "");
+  if (!/^https?:\/\//i.test(base)) {
+    base = `https://${base}`;
+  }
   return {
     rules: {
       userAgent: "*",

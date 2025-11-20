@@ -7,7 +7,10 @@ function xmlEscape(s: string) {
 
 export async function GET() {
   const root = process.cwd();
-  const base = (process.env.NEXT_PUBLIC_SITE_URL || "https://spartans-club.netlify.app/").replace(/\/+$/, "");
+  let base = (process.env.NEXT_PUBLIC_SITE_URL || "https://spartans-club.netlify.app/").replace(/\/+$/, "");
+  if (!/^https?:\/\//i.test(base)) {
+    base = `https://${base}`;
+  }
   const galleriesDir = path.join(root, "public", "gallery");
   const trainersDir = path.join(root, "public", "trainers");
 

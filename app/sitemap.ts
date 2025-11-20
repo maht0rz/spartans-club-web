@@ -1,7 +1,10 @@
 import type { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base = (process.env.NEXT_PUBLIC_SITE_URL || "https://spartans-club.netlify.app/").replace(/\/+$/, "");
+  let base = (process.env.NEXT_PUBLIC_SITE_URL || "https://spartans-club.netlify.app/").replace(/\/+$/, "");
+  if (!/^https?:\/\//i.test(base)) {
+    base = `https://${base}`;
+  }
   const baseRoutesEn = ["/", "/sessions", "/way-of-life", "/testimonials", "/private-coaching", "/about", "/gallery"];
   const baseRoutesSk = ["/", "/rozvrh", "/way-of-life", "/referencie", "/treneri", "/o-nas", "/galeria"];
   const locales = ["sk", "en"];
