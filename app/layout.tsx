@@ -26,6 +26,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   const urlDebounceRef = React.useRef<number | null>(null);
   const [isOnline, setIsOnline] = React.useState<boolean>(false);
   const [isOnlineReady, setIsOnlineReady] = React.useState<boolean>(false);
+  const [isAway, setIsAway] = React.useState<boolean>(false);
 
   // SEO constants (client-safe NEXT_PUBLIC envs are inlined at build time)
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
@@ -265,15 +266,28 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     };
   }, []);
 
-  // Compute online indicator (Mon–Fri, 08:00–20:00 local time)
+  // Compute availability
   React.useEffect(() => {
     function computeOnline() {
       const now = new Date();
       const day = now.getDay(); // 0 Sun ... 6 Sat
       const hour = now.getHours();
-      const weekday = day >= 1 && day <= 5;
-      const withinHours = hour >= 8 && hour < 20;
-      setIsOnline(weekday && withinHours);
+      const minutes = now.getMinutes();
+      const total = hour * 60 + minutes;
+      const isWeekday = day >= 1 && day <= 5;
+      // Active phone hours: Mon–Fri 09:00–19:00
+      let withinActiveHours = isWeekday && total >= (9 * 60) && total < (19 * 60);
+      // Training windows (Mon/Wed/Fri): 07:00–09:00, 16:00–17:00, 18:30–19:30
+      const isMWF = day === 1 || day === 3 || day === 5;
+      const inMorning = total >= (7 * 60) && total < (9 * 60);
+      const inAfternoon = total >= (16 * 60) && total < (17 * 60);
+      const inEvening = total >= (18 * 60 + 30) && total < (19 * 60 + 30);
+      let trainingNow = isMWF && (inMorning || inAfternoon || inEvening);
+      trainingNow = true;
+      // Online only when within active hours and not training
+      setIsOnline(withinActiveHours && !trainingNow);
+      // // Away when training windows hit (regardless of active hours)
+      setIsAway(trainingNow);
       setIsOnlineReady(true);
     }
     computeOnline();
@@ -729,21 +743,21 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           {/* Floating help button with helper bubble */}
           {isOnlineReady && (
             <a
-              href={`${isOnline ? "tel" : "sms"}:${ensureI18n().t("about.phone")}`}
+              href={`${isAway ? "sms" : (isOnline ? "tel" : "sms")}:${ensureI18n().t("about.phone")}`}
               className="fixed bottom-4 right-4 z-[90] flex items-end gap-3 animate__animated animate__bounceInUp animate__delay-1s"
-              aria-label={isOnline ? "Call head coach" : "Message head coach"}
+              aria-label={isAway ? "Message head coach (away)" : (isOnline ? "Call head coach" : "Message head coach")}
               onClick={() =>
                 gaEvent("cta_click", {
-                  cta_name: isOnline ? "call_head_coach" : "message_head_coach",
+                  cta_name: isAway ? "message_head_coach" : (isOnline ? "call_head_coach" : "message_head_coach"),
                   location: "floating_button",
-                  link_url: `${isOnline ? "tel" : "sms"}:${ensureI18n().t("about.phone")}`,
+                  link_url: `${isAway ? "sms" : (isOnline ? "tel" : "sms")}:${ensureI18n().t("about.phone")}`,
                 })
               }
             >
               <div className="flex items-center gap-3 max-w-[320px] bg-white dark:bg-black border border-black/10 dark:border-white/10 shadow-lg rounded-2xl px-3.5 py-2.5">
                 <span className="relative inline-flex items-center justify-center shrink-0 w-9 h-9 rounded-full bg-black/5 text-muted-foreground border border-black/10">
                   <span
-                    className={`absolute -top-1 -right-1 w-3 h-3 rounded-full border border-white ${isOnline ? "bg-emerald-500" : "bg-gray-400"}`}
+                    className={`absolute -top-1 -right-1 w-3 h-3 rounded-full border border-white ${isOnline ? "bg-emerald-500" : isAway ? "bg-amber-400" : "bg-gray-400"}`}
                     aria-hidden="true"
                   />
                   {isOnline ? (
@@ -759,7 +773,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <div className="text-[14px] md:text-[15px] leading-snug text-foreground">
                   {isOnline
                     ? ensureI18n().t("help.online")
-                    : ensureI18n().t("help.offline")}
+                    : (isAway ? ensureI18n().t("help.away") : ensureI18n().t("help.offline"))}
                 </div>
               </div>
               <span className="inline-flex items-center justify-center w-12 h-12 rounded-full overflow-hidden border border-black/10 dark:border-white/10 bg-white dark:bg-black shadow-lg transition">

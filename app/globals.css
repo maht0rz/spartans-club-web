@@ -480,11 +480,11 @@ footer.site-footer {
   to { opacity: 1; transform: translateZ(0); }
 }
 @keyframes heroFadeInUp {
-  from { opacity: .3; transform: translate3d(0, 15%, 0); }
+  from { opacity: .5; transform: translate3d(0, 5%, 0); }
   to { opacity: 1; transform: translateZ(0); }
 }
 @keyframes heroFadeInUpFromZero {
-  from { opacity: 0; transform: translate3d(0, 30%, 0); }
+  from { opacity: 0; transform: translate3d(0, 10%, 0); }
   to { opacity: 1; transform: translateZ(0); }
 }
 @keyframes heroFadeInDown {
