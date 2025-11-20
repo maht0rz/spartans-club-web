@@ -2,7 +2,7 @@
   {
     "id": "vincentkolek",
     "name": "Vincent",
-    "tags": ["MUAY THAI"],
+    "tags": ["Head Coach", "MUAY THAI"],
     "phone": "+421 911 712 109",
     "whatsapp": "https://wa.me/421911712109",
     "instagramHandle": "@vincentkolek",
@@ -30,14 +30,14 @@
     "image": "/trainers/matus.png"
   },
   {
-    "id": "igi.or.thai",
-    "name": "Igor",
-    "tags": ["MUAY THAI", "VIBRAČNÉ TYČE"],
-    "phone": "+421 911 319 217",
-    "whatsapp": "https://wa.me/421911319217",
-    "instagramHandle": "@igi.or.thai",
-    "instagramUrl": "https://instagram.com/igi.or.thai",
-    "image": "/trainers/igor.png"
+    "id": "samuel_marcan",
+    "name": "Samo",
+    "tags": ["Fyzio Coach"],
+    "phone": "+421 948 833 232",
+    "whatsapp": "https://wa.me/421948833232",
+    "instagramHandle": "@samuel_marcan",
+    "instagramUrl": "https://instagram.com/samuel_marcan",
+    "image": "/trainers/samo.png"
   },
   {
     "id": "alexanderdzabo92",
@@ -60,16 +60,6 @@
     "image": "/trainers/max.png"
   },
   {
-    "id": "alexandra.coach.sk",
-    "name": "Alexandra",
-    "tags": ["SILOVO‑KONDIČNÝ TRÉNING", "THAJSKÝ BOX"],
-    "phone": "+421 949 540 020",
-    "whatsapp": "https://wa.me/421949540020",
-    "instagramHandle": "@alexandra.coach.sk",
-    "instagramUrl": "https://instagram.com/alexandra.coach.sk",
-    "image": "/trainers/alexandra.png"
-  },
-  {
     "id": "daniel",
     "name": "Daniel",
     "tags": ["JU‑JITSU"],
@@ -78,6 +68,16 @@
     "instagramHandle": "",
     "instagramUrl": "",
     "image": "/trainers/daniel.png"
+  },
+  {
+    "id": "igi.or.thai",
+    "name": "Igor",
+    "tags": ["MUAY THAI", "VIBRAČNÉ TYČE"],
+    "phone": "+421 911 319 217",
+    "whatsapp": "https://wa.me/421911319217",
+    "instagramHandle": "@igi.or.thai",
+    "instagramUrl": "https://instagram.com/igi.or.thai",
+    "image": "/trainers/igor.png"
   }
 ]
 

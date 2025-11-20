@@ -9,8 +9,13 @@ let initialized = false;
 
 function getInitialLanguage(): string {
   if (typeof window === "undefined") return "sk";
+  const path = window.location.pathname.split("/")[1]?.toLowerCase();
+  if (path === "en" || path === "sk") return path;
   const fromStorage = window.localStorage.getItem("lng");
   if (fromStorage) return fromStorage;
+  const nav = window.navigator.language.toLowerCase();
+  if (nav.startsWith("sk")) return "sk";
+  if (nav.startsWith("en")) return "en";
   return "sk";
 }
 

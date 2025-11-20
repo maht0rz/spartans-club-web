@@ -22,6 +22,7 @@ const RESPONSIVE_SUFFIX = (w) => `-${w}w`;
 const HERO_WIDTHS = [480, 768, 1024, 1280];
 const GALLERY_WIDTHS = [480, 768, 1024, 1536];
 const TRAINER_WIDTHS = [634, 1268]; // 1x and 2x
+const RESPONSIVE_VARIANT_RE = /-\d+w\.(jpg|jpeg|png)$/i;
 
 function isImageFile(filePath) {
   const ext = path.extname(filePath).toLowerCase();
@@ -137,6 +138,10 @@ async function generateVariant(basePath, width, options = {}) {
 }
 
 async function generateResponsiveVariantsIfNeeded(filePath) {
+  // Never generate variants from an already generated variant to avoid duplication chains
+  if (RESPONSIVE_VARIANT_RE.test(filePath)) {
+    return false;
+  }
   // Gallery set
   if (filePath.includes(GALLERY_DIR_SEGMENT)) {
     await Promise.all(GALLERY_WIDTHS.map((w) => generateVariant(filePath, w)));

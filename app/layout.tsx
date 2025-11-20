@@ -3,6 +3,7 @@
 import "./globals.css";
 import React from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import I18nProvider from "../components/I18nProvider";
 import LanguageSelector from "../components/LanguageSelector";
 import { ensureI18n } from "../lib/i18n";
@@ -16,6 +17,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   const [splashVisible, setSplashVisible] = React.useState(false);
   const [splashIn, setSplashIn] = React.useState(false);
   const [splashOut, setSplashOut] = React.useState(false);
+  const pendingSectionIdRef = React.useRef<typeof active | null>(null);
+  const urlDebounceRef = React.useRef<number | null>(null);
 
   // SEO constants (client-safe NEXT_PUBLIC envs are inlined at build time)
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
@@ -199,14 +202,38 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     }
   }
 
+  const pathname = usePathname();
+  const _parts = (pathname || "/").split("/").filter(Boolean);
+  const _first = _parts[0];
+  const currentLocale = (_first === "en" ? "en" : "sk") as "sk" | "en";
+  const prefix = currentLocale === "en" ? "/en" : "/sk";
+  const slugsEn: Record<"top" | "sessions" | "way-of-life" | "testimonials" | "private-coaching" | "about" | "gallery", string> = {
+    top: "",
+    sessions: "sessions",
+    "way-of-life": "way-of-life",
+    testimonials: "testimonials",
+    "private-coaching": "private-coaching",
+    about: "about",
+    gallery: "gallery",
+  };
+  const slugsSk: Record<"top" | "sessions" | "way-of-life" | "testimonials" | "private-coaching" | "about" | "gallery", string> = {
+    top: "",
+    sessions: "rozvrh",
+    "way-of-life": "way-of-life",
+    testimonials: "referencie",
+    "private-coaching": "treneri",
+    about: "o-nas",
+    gallery: "galeria",
+  };
+  const slugs = currentLocale === "en" ? slugsEn : slugsSk;
   const navItems: Array<{ id: "top" | "way-of-life" | "sessions" | "testimonials" | "private-coaching" | "gallery" | "contact" | "about" | "shop"; labelKey: string; href: string, target?: string }> = [
-    { id: "top", labelKey: "nav.home", href: "/" },
-    { id: "sessions", labelKey: "nav.sessions", href: "/sessions" },
-    { id: "way-of-life", labelKey: "nav.wayoflife", href: "/way-of-life" },
-    { id: "testimonials", labelKey: "nav.testimonials", href: "/testimonials" },
-    { id: "private-coaching", labelKey: "nav.private", href: "/private-coaching" },
-    { id: "about", labelKey: "nav.about", href: "/about" },
-    { id: "gallery", labelKey: "nav.gallery", href: "/gallery" },
+    { id: "top", labelKey: "nav.home", href: `${prefix}/` },
+    { id: "sessions", labelKey: "nav.sessions", href: `${prefix}/${slugs.sessions}` },
+    { id: "way-of-life", labelKey: "nav.wayoflife", href: `${prefix}/${slugs["way-of-life"]}` },
+    { id: "testimonials", labelKey: "nav.testimonials", href: `${prefix}/${slugs.testimonials}` },
+    { id: "private-coaching", labelKey: "nav.private", href: `${prefix}/${slugs["private-coaching"]}` },
+    { id: "about", labelKey: "nav.about", href: `${prefix}/${slugs.about}` },
+    { id: "gallery", labelKey: "nav.gallery", href: `${prefix}/${slugs.gallery}` },
     // { id: "shop", labelKey: "nav.shop", href: "https://shop.spartans.sk", target: "_blank" },
   ];
 
@@ -237,11 +264,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           nearestId = id;
         }
       });
-      const desiredPath = idToPath.get(nearestId) || "/";
-      if (window.location.pathname !== desiredPath) {
-        window.history.replaceState(null, "", desiredPath);
+      // Update visual active section immediately, but delay URL mutation until scrolling stops
+      pendingSectionIdRef.current = nearestId;
+      if (active !== nearestId) {
+        setActive(nearestId);
       }
-      setActive(nearestId);
     }
     let ticking = false;
     const onScroll = () => {
@@ -252,15 +279,72 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         });
         ticking = true;
       }
+      // Re-schedule URL commit after user stops scrolling
+      if (urlDebounceRef.current) {
+        clearTimeout(urlDebounceRef.current);
+      }
+      urlDebounceRef.current = window.setTimeout(() => {
+        const id = pendingSectionIdRef.current || "top";
+        const desiredPath = idToPath.get(id) || "/";
+        if (window.location.pathname !== desiredPath) {
+          window.history.replaceState(null, "", desiredPath);
+        }
+        // Ensure active aligns with committed section
+        if (active !== id) setActive(id);
+        urlDebounceRef.current = null;
+      }, 360);
     };
     computeAndSync();
+    // Initial commit timer
+    if (urlDebounceRef.current) {
+      clearTimeout(urlDebounceRef.current);
+    }
+    urlDebounceRef.current = window.setTimeout(() => {
+      const id = pendingSectionIdRef.current || "top";
+      const desiredPath = idToPath.get(id) || "/";
+      if (window.location.pathname !== desiredPath) {
+        window.history.replaceState(null, "", desiredPath);
+      }
+      if (active !== id) setActive(id);
+      urlDebounceRef.current = null;
+    }, 200);
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
     return () => {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
+      if (urlDebounceRef.current) {
+        clearTimeout(urlDebounceRef.current);
+      }
     };
-  }, []);
+  }, [prefix, active]);
+
+  // Update active menu when route changes (respects locale prefix and localized slugs)
+  React.useEffect(() => {
+    const parts = (pathname || "/").split("/").filter(Boolean);
+    const idx = parts[0] === "sk" || parts[0] === "en" ? 1 : 0;
+    const section = parts[idx] || "";
+    const mapEn: Record<string, typeof active> = {
+      "": "top",
+      "sessions": "sessions",
+      "way-of-life": "way-of-life",
+      "testimonials": "testimonials",
+      "private-coaching": "private-coaching",
+      "about": "about",
+      "gallery": "gallery",
+    };
+    const mapSk: Record<string, typeof active> = {
+      "": "top",
+      "rozvrh": "sessions",
+      "way-of-life": "way-of-life",
+      "referencie": "testimonials",
+      "treneri": "private-coaching",
+      "o-nas": "about",
+      "galeria": "gallery",
+    };
+    const map = currentLocale === "en" ? mapEn : mapSk;
+    setActive(map[section] ?? "top");
+  }, [pathname]);
   return (
     <html lang="en">
       <head>
@@ -328,7 +412,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                       className={`text-md px-3 py-2 rounded-md hover:text-primary ${
                         active === item.id ? "text-primary font-semibold" : "text-muted-foreground hover:text-foreground"
                       }`}
-                      onClick={() => !item.target && setActive(item.id)}
+                      onClick={() => {
+                        if (!item.target) setActive(item.id);
+                        if (item.id === "top") {
+                          try {
+                            window.scrollTo({ top: 0, behavior: "smooth" });
+                          } catch {}
+                        }
+                      }}
                       target={item.target ?? undefined}
                     >
                       {ensureI18n().t(item.labelKey)}
@@ -428,6 +519,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                         onClick={() => {
                           setActive(item.id);
                           setMobileOpen(false);
+                          if (item.id === "top") {
+                            try {
+                              window.scrollTo({ top: 0, behavior: "smooth" });
+                            } catch {}
+                          }
                         }}
                       >
                         {ensureI18n().t(item.labelKey)}
@@ -513,7 +609,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               </div>
             </div>
             <span className="inline-flex items-center justify-center w-12 h-12 rounded-full overflow-hidden border border-black/10 dark:border-white/10 bg-white dark:bg-black shadow-lg hover:scale-105 transition">
-              <img src="/vincent.png" alt="Call Vincent" className="w-full h-full object-cover object-center scale-125" />
+              <img src="/vincent.png" alt="Call Vincent" className="w-full h-full object-cover object-center scale-125 call-vincent" />
             </span>
           </a>
           {/* <footer className="mt-14 border-t border-black/10 text-muted-foreground">

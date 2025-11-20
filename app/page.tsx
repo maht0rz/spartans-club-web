@@ -109,6 +109,9 @@ function CountUp({
 
 export default function HomePage() {
   const { t, i18n } = useTranslation();
+  const currentLocale = (typeof window !== "undefined" ? window.location.pathname.split("/")[1] : "sk") as "sk" | "en";
+  const prefix = currentLocale === "en" ? "/en" : "/sk";
+  const slugSessions = currentLocale === "en" ? "sessions" : "rozvrh";
   const langKey =
     i18n.language && i18n.language.toLowerCase().startsWith("sk") ? "sk" : "en";
   return (
@@ -131,7 +134,7 @@ export default function HomePage() {
               }}
             />
             <div className="flex gap-3 flex-wrap mt-5">
-              <Link href="/sessions" scroll={false}>
+              <Link href={`${prefix}/${slugSessions}`} scroll={false}>
                 <Button>{t("hero.cta.sessions")}</Button>
               </Link>
               <a href={`tel:${t("about.phone")}`}>
@@ -144,18 +147,19 @@ export default function HomePage() {
               </a>
             </div>
           </div>
-          <div className="hero-image order-1 md:order-2 relative">
+          <div className="hero-image order-1 md:order-2 relative overflow-hidden">
             <img
               src="/vincent-768w.png"
               srcSet="/vincent-480w.png 480w, /vincent-768w.png 768w, /vincent-1024w.png 1024w, /vincent-1280w.png 1280w"
               sizes="(min-width: 768px) 40vw, 100vw"
               alt="Headcoach Vincent Kolek"
-              className="object-center w-full"
+              className="w-full h-full object-cover"
               loading="eager"
               fetchPriority="high"
               width={634}
               height={979}
               decoding="async"
+              style={{ objectPosition: "50% 18%" }}
             />
           </div>
         </Container>
