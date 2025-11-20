@@ -283,7 +283,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       const inAfternoon = total >= (16 * 60) && total < (17 * 60);
       const inEvening = total >= (18 * 60 + 30) && total < (19 * 60 + 30);
       let trainingNow = isMWF && (inMorning || inAfternoon || inEvening);
-      trainingNow = true;
+
       // Online only when within active hours and not training
       setIsOnline(withinActiveHours && !trainingNow);
       // // Away when training windows hit (regardless of active hours)
