@@ -744,7 +744,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           {isOnlineReady && (
             <a
               href={`${isAway ? "sms" : (isOnline ? "tel" : "sms")}:${ensureI18n().t("about.phone")}`}
-              className="fixed bottom-4 right-4 z-[90] flex items-end gap-3 animate__animated animate__bounceInUp animate__delay-1s"
+              className="fixed bottom-4 right-4 z-[90] flex items-end gap-3 animate__animated animate__bounceInUp animate__delay-2s"
               aria-label={isAway ? "Message head coach (away)" : (isOnline ? "Call head coach" : "Message head coach")}
               onClick={() =>
                 gaEvent("cta_click", {

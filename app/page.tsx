@@ -118,11 +118,11 @@ export default function HomePage() {
   return (
     <main>
       <section id="top" className="py-16 scroll-mt-24 hero relative">
-        <Container className="grid grid-cols-1 md:grid-cols-[1.4fr_.6fr] gap-10 items-center">
+        <Container className="grid grid-cols-1 md:grid-cols-[1.4fr_.6fr] gap-7 items-center">
           <div
             className="order-2 md:order-1 animate__animated  hero-anim-left"
           >
-            <div className="inline-flex items-center gap-2 rounded-full border border-black/15 bg-black/5 text-muted-foreground text-xs px-3 py-2 mb-3">
+            <div className="inline-flex items-center gap-2 rounded-full border border-black/15 bg-black/5 text-muted-foreground text-xs px-3 py-2 mb-5 md:mb-3">
               {t("hero.eyebrow")}
             </div>
             <h1 className="font-display font-bold text-4xl md:text-6xl leading-[1.05] mt-3">
