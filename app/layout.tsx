@@ -348,7 +348,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <head>
-      <meta name="google-site-verification" content="6BudQ4yOWOQzLJyUGI98HPtaQJz1ohCxLY8NEnHBfJc" />
+      <meta name="google-site-verification" content="MVWRCAtl0E1o_XE1ovOw7MNmUcdgRiNb2usuYN7CP-8" />
       <meta charSet="utf-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <title>{title}</title>
