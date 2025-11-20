@@ -2,7 +2,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { changeLanguage } from "../lib/i18n";
-import { useRouter } from "next/navigation";
 
 const languages: Array<{ code: "sk" | "en"; label: string; flag: string }> = [
   { code: "sk", label: "SK", flag: "🇸🇰" },
@@ -11,7 +10,6 @@ const languages: Array<{ code: "sk" | "en"; label: string; flag: string }> = [
 
 export default function LanguageSelector() {
   const { i18n } = useTranslation();
-  const router = useRouter();
   const [open, setOpen] = React.useState(false);
   const current = languages.find((l) => l.code === (i18n.language as "sk" | "en")) ?? languages[0];
   const btnRef = React.useRef<HTMLButtonElement | null>(null);
@@ -60,16 +58,22 @@ export default function LanguageSelector() {
                 onClick={() => {
                   changeLanguage(lng.code);
                   try {
-                    // Persist cookie for middleware compatibility
                     document.cookie = `lng=${lng.code}; path=/; max-age=${60 * 60 * 24 * 365}`;
                   } catch {}
-                  // Compute new locale-prefixed route keeping the current subpath
-                  const { pathname, search, hash } = window.location;
-                  const parts = pathname.split("/").filter(Boolean);
-                  // remove existing locale if present
-                  const rest = parts.length > 0 && (parts[0] === "sk" || parts[0] === "en") ? parts.slice(1) : parts;
-                  const newPath = `/${lng.code}${rest.length ? `/${rest.join("/")}` : ""}${search}${hash}`;
-                  router.push(newPath, { scroll: false });
+                  try {
+                    const { pathname, search, hash } = window.location;
+                    const parts = pathname.split("/").filter(Boolean);
+                    const rest =
+                      parts.length > 0 && (parts[0] === "sk" || parts[0] === "en")
+                        ? parts.slice(1)
+                        : parts;
+                    const newPath = `/${lng.code}${rest.length ? `/${rest.join("/")}` : ""}${search}${hash}`;
+                    if (window.location.pathname !== newPath) {
+                      window.history.replaceState(null, "", newPath);
+                    }
+                  } catch {
+                    // ignore history errors
+                  }
                   setOpen(false);
                 }}
               >

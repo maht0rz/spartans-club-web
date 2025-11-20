@@ -10,6 +10,7 @@ let initialized = false;
 function getInitialLanguage(): string {
   if (typeof window === "undefined") return "sk";
   const path = window.location.pathname.split("/")[1]?.toLowerCase();
+  console.log('path', path);
   if (path === "en" || path === "sk") return path;
   const fromStorage = window.localStorage.getItem("lng");
   if (fromStorage) return fromStorage;

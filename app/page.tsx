@@ -120,7 +120,7 @@ export default function HomePage() {
       <section id="top" className="py-16 scroll-mt-24 hero relative">
         <Container className="grid grid-cols-1 md:grid-cols-[1.4fr_.6fr] gap-7 items-center">
           <div
-            className="order-2 md:order-1 animate__animated  hero-anim-left"
+            className="order-2 md:order-1"
           >
             <div className="inline-flex items-center gap-2 rounded-full border border-black/15 bg-black/5 text-muted-foreground text-xs px-3 py-2 mb-5 md:mb-3">
               {t("hero.eyebrow")}
@@ -158,8 +158,7 @@ export default function HomePage() {
             </div>
           </div>
           <div
-            className="hero-image order-1 md:order-2 relative overflow-hidden animate__animated  hero-anim-right"
-            
+            className="hero-image order-1 md:order-2 relative overflow-hidden"
           >
             <img
               src="/vincent-768w.png"
@@ -179,10 +178,10 @@ export default function HomePage() {
       </section>
 
       
-      <section className="py-10" data-reveal-section>
+      <section className="py-10">
         <Container>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 text-center">
-            <div className="flex flex-col items-center" data-reveal="up" data-reveal-delay="0.05s">
+            <div className="flex flex-col items-center">
               <div className="text-sm uppercase tracking-wide text-muted-foreground">
                 {t("stats.trainees.label")}
               </div>
@@ -200,7 +199,7 @@ export default function HomePage() {
                 );
               })()}
             </div>
-            <div className="flex flex-col items-center" data-reveal="up" data-reveal-delay="0.15s">
+            <div className="flex flex-col items-center">
               <div className="text-sm uppercase tracking-wide text-muted-foreground">
                 {t("stats.experience.label")}
               </div>
@@ -218,7 +217,7 @@ export default function HomePage() {
                 );
               })()}
             </div>
-            <div className="flex flex-col items-center" data-reveal="up" data-reveal-delay="0.25s">
+            <div className="flex flex-col items-center">
               <div className="text-sm uppercase tracking-wide text-muted-foreground">
                 {t("stats.sessions.label")}
               </div>
@@ -237,7 +236,7 @@ export default function HomePage() {
               })()}
             </div>
 
-            <div className="flex flex-col items-center" data-reveal="up" data-reveal-delay="0.35s">
+            <div className="flex flex-col items-center">
               <div className="text-sm uppercase tracking-wide text-muted-foreground">
                 {t("stats.established.label")}
               </div>
@@ -262,16 +261,13 @@ export default function HomePage() {
       <section
         id="sessions"
         className="py-12 md:py-12 scroll-mt-24 section-trainings"
-        data-reveal-section
       >
         <Container>
-          <h2 className="font-display font-extrabold text-4xl md:text-4xl uppercase" data-reveal="up" data-reveal-delay="0s">
+          <h2 className="font-display font-extrabold text-4xl md:text-4xl uppercase">
             {t("sessions.title")}
           </h2>
           <p
             className="text-muted-foreground mt-1"
-            data-reveal="up"
-            data-reveal-delay="0.1s"
             dangerouslySetInnerHTML={{
               __html: t("sessions.subtitle", {
                 coach: "<strong>Headcoach Vincent Kolek</strong>",
@@ -280,7 +276,7 @@ export default function HomePage() {
           />
           <div className="mt-10"></div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 mt-4 auto-rows-fr mt-10">
-            <Card className="p-4 flex flex-col h-full group" data-reveal="up" data-reveal-delay="0.05s">
+            <Card className="p-4 flex flex-col h-full group">
               <h3 className="font-display font-extrabold font-goodland text-primary text-3xl md:text-4xl tracking-wide m-0">
                 {t("session.vip")}
               </h3>
@@ -339,7 +335,7 @@ export default function HomePage() {
                 </div>
               </div>
             </Card>
-            <Card className="p-4 flex flex-col h-full group" data-reveal="up" data-reveal-delay="0.15s">
+            <Card className="p-4 flex flex-col h-full group">
               <div className="flex items-center justify-between gap-2">
                 <h3 className="font-display font-bold font-goodland text-primary text-3xl md:text-4xl tracking-wide m-0">
                   {t("session.kids")}
@@ -403,7 +399,7 @@ export default function HomePage() {
                 </div>
               </div>
             </Card>
-            <Card className="p-4 flex flex-col h-full group" data-reveal="up" data-reveal-delay="0.25s">
+            <Card className="p-4 flex flex-col h-full group">
               <div className="flex items-center justify-between gap-2">
                 <h3 className="font-display font-bold font-goodland text-primary text-3xl md:text-4xl tracking-wide m-0">
                   {t("session.club")}
@@ -467,7 +463,7 @@ export default function HomePage() {
                 </div>
               </div>
             </Card>
-            <Card className="p-4 flex flex-col h-full group" data-reveal="up" data-reveal-delay="0.35s">
+            <Card className="p-4 flex flex-col h-full group">
               <h3 className="font-display font-bold font-goodland text-primary text-3xl md:text-4xl tracking-wide m-0">
                 {t("session.private")}
               </h3>
@@ -540,13 +536,13 @@ export default function HomePage() {
       </section>
       
       {/* Reasons to start Muay Thai (accordion) */}
-      <section id="way-of-life" className="py-12 scroll-mt-24" data-reveal-section>
+      <section id="way-of-life" className="py-12 scroll-mt-24">
         <Container>
           <div className="mt-4"></div>
-          <h2 className="font-display font-extrabold text-4xl md:text-4xl uppercase" data-reveal="up" data-reveal-delay="0s">
+          <h2 className="font-display font-extrabold text-4xl md:text-4xl uppercase">
             {t("reasons.title")}
           </h2>
-          <p className="text-muted-foreground mt-1" data-reveal="up" data-reveal-delay="0.1s">{t("reasons.subtitle")}</p>
+          <p className="text-muted-foreground mt-1">{t("reasons.subtitle")}</p>
           <div className="mt-10"></div>
           {(() => {
             const items = t("reasons.items", { returnObjects: true }) as Array<{ title: string; body: string }>;
@@ -559,8 +555,9 @@ export default function HomePage() {
                     <div
                       key={idx}
                       className="rounded-md bg-white dark:bg-black px-0 py-3"
-                      data-reveal="up"
-                      data-reveal-delay={`${0.05 * (idx + 1)}s`}
+                      {...((!showAll || idx < 3) && {
+                        // previously animated on scroll; animations removed
+                      })}
                     >
                       <div className="text-base md:text-lg font-semibold text-left">{it.title}</div>
                       <div className="mt-2 text-[15px] md:text-base leading-relaxed text-muted-foreground text-left">
@@ -570,7 +567,7 @@ export default function HomePage() {
                   ))}
                 </div>
                 {items.length > 3 && (
-                  <div className="mt-3 flex justify-center" data-reveal="up" data-reveal-delay="0.25s">
+                  <div className="mt-3 flex justify-center">
                     <Button
                       variant="outline"
                       onClick={() => {
@@ -600,12 +597,12 @@ export default function HomePage() {
         </Container>
       </section>
       
-      <section id="testimonials" className="py-12 md:py-16 scroll-mt-24" data-reveal-section>
+      <section id="testimonials" className="py-12 md:py-16 scroll-mt-24">
         <Container>
-          <h2 className="font-display font-extrabold text-4xl md:text-4xl uppercase" data-reveal="up" data-reveal-delay="0s">
+          <h2 className="font-display font-extrabold text-4xl md:text-4xl uppercase">
             {t("testimonials.title")}
           </h2>
-          <p className="text-muted-foreground mt-1" data-reveal="up" data-reveal-delay="0.1s">{t("testimonials.subtitle")}</p>
+          <p className="text-muted-foreground mt-1">{t("testimonials.subtitle")}</p>
           <div className="mt-10"></div>
           {(() => {
             const testimonials = t("testimonials.items", { returnObjects: true }) as Array<{
@@ -636,7 +633,7 @@ export default function HomePage() {
                   const rating = Math.max(0, Math.min(5, item.rating ?? 5));
                   const tags = Array.isArray(item.tags) ? item.tags : [];
                   return (
-                    <Card key={idx} className="p-4 h-full" data-reveal="up" data-reveal-delay={`${0.05 * (idx + 1)}s`}>
+                    <Card key={idx} className="p-4 h-full">
                       <div className="flex items-center gap-3">
                         <svg
                           viewBox="0 0 24 24"
@@ -676,12 +673,12 @@ export default function HomePage() {
         </Container>
       </section>
 
-      <section id="private-coaching" className="py-10 scroll-mt-24" data-reveal-section>
+      <section id="private-coaching" className="py-10 scroll-mt-24">
         <Container>
-          <h2 className="font-display font-extrabold text-4xl md:text-4xl uppercase" data-reveal="up" data-reveal-delay="0s">
+          <h2 className="font-display font-extrabold text-4xl md:text-4xl uppercase">
             {t("private.title")}
           </h2>
-          <p className="text-muted-foreground mt-1" data-reveal="up" data-reveal-delay="0.1s">{t("private.subtitle")}</p>
+          <p className="text-muted-foreground mt-1">{t("private.subtitle")}</p>
           <div className="mt-10"></div>
           {(() => {
             const trainers = (trainersData as Array<{
@@ -700,9 +697,7 @@ export default function HomePage() {
             return (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mt-4 auto-rows-fr">
                 {trainers.map((tr, idx) => (
-                  <div key={idx} data-reveal="up" data-reveal-delay={`${0.05 * (idx + 1)}s`}>
-                    <TrainerCard trainer={tr} />
-                  </div>
+                  <TrainerCard key={idx} trainer={tr} />
                 ))}
               </div>
             );
@@ -710,18 +705,18 @@ export default function HomePage() {
         </Container>
       </section>
 
-      <section id="about" className="py-16 scroll-mt-24" data-reveal-section>
+      <section id="about" className="py-16 scroll-mt-24">
         <Container>
-          <h2 className="font-display font-extrabold text-4xl md:text-4xl uppercase" data-reveal="up" data-reveal-delay="0s">
+          <h2 className="font-display font-extrabold text-4xl md:text-4xl uppercase">
             {t("about.title")}
           </h2>
-          <p className="text-muted-foreground mt-1" data-reveal="up" data-reveal-delay="0.1s">{t("about.subtitle")}</p>
+          <p className="text-muted-foreground mt-1">{t("about.subtitle")}</p>
           <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-3">
             {(() => {
               const query = t("about.mapQuery");
               const src = `https://www.google.com/maps?q=${encodeURIComponent(query)}&output=embed`;
               return (
-                <div className="overflow-hidden rounded-lg border border-black/10 dark:border-white/10 bg-white dark:bg-black shadow-sm" data-reveal="up" data-reveal-delay="0.05s">
+                <div className="overflow-hidden rounded-lg border border-black/10 dark:border-white/10 bg-white dark:bg-black shadow-sm">
                   <iframe
                     src={src}
                     className="w-full h-[360px] md:h-[460px] dark:invert dark:hue-rotate-180"
@@ -732,7 +727,7 @@ export default function HomePage() {
                 </div>
               );
             })()}
-            <div className="p-2" data-reveal="up" data-reveal-delay="0.15s">
+            <div className="p-2">
               <div className="text-xs uppercase tracking-wide text-muted-foreground">{t("about.companyLabel")}</div>
               <div className="text-lg font-semibold">{t("about.companyName")}</div>
 
@@ -762,12 +757,12 @@ export default function HomePage() {
         </Container>
       </section>
 
-      <section id="gallery" className="py-16 scroll-mt-24 relative" data-reveal-section>
+      <section id="gallery" className="py-16 scroll-mt-24 relative">
         <Container>
-        <h2 className="font-display font-extrabold text-4xl md:text-4xl uppercase" data-reveal="up" data-reveal-delay="0s">
+        <h2 className="font-display font-extrabold text-4xl md:text-4xl uppercase">
             {t("gallery.title")}
           </h2>
-          <p className="text-muted-foreground mt-1" data-reveal="up" data-reveal-delay="0.1s">
+          <p className="text-muted-foreground mt-1">
             <Trans
               i18nKey="gallery.subtitle"
               components={{
@@ -792,7 +787,11 @@ export default function HomePage() {
             <>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-white dark:bg-white mt-4 auto-rows-fr">
                 {visibleImages.map((src, idx) => (
-                  <div key={src} className="w-full overflow-hidden relative" data-reveal="up" data-reveal-delay={`${0.05 * (idx + 1)}s`}>
+                  <div
+                    key={src}
+                    className="w-full overflow-hidden relative"
+                    // previously animated on scroll; animations removed
+                  >
                     <img
                       src={src.replace(/(\.\w+)$/, "-768w$1")}
                       srcSet={`${src.replace(/(\.\w+)$/, "-480w$1")} 480w, ${src.replace(/(\.\w+)$/, "-768w$1")} 768w, ${src.replace(/(\.\w+)$/, "-1024w$1")} 1024w, ${src.replace(/(\.\w+)$/, "-1536w$1")} 1536w`}
@@ -804,7 +803,7 @@ export default function HomePage() {
                   </div>
                 ))}
               </div>
-              <div className="mt-4 flex justify-center" data-reveal="up" data-reveal-delay="0.35s">
+              <div className="mt-4 flex justify-center">
                 <Button
                   variant="outline"
                   onClick={() =>
@@ -834,15 +833,15 @@ export default function HomePage() {
       </section>
 
       {/* Sponsors */}
-      <section id="sponsors" className="py-12 scroll-mt-24" data-reveal-section>
+      <section id="sponsors" className="py-12 scroll-mt-24">
         <Container>
-          <h2 className="font-display font-extrabold text-4xl md:text-4xl uppercase" data-reveal="up" data-reveal-delay="0s">
+          <h2 className="font-display font-extrabold text-4xl md:text-4xl uppercase">
             {t("sponsors.title")}
           </h2>
-          <p className="text-muted-foreground mt-1" data-reveal="up" data-reveal-delay="0.1s">{t("sponsors.subtitle")}</p>
+          <p className="text-muted-foreground mt-1">{t("sponsors.subtitle")}</p>
           <div className="mt-6 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-8 items-stretch">
             {(sponsorsData as Array<{ image: string; href?: string }>).map((s, i) => (
-              <div key={i} className="h-24 sm:h-28 md:h-32" data-reveal="up" data-reveal-delay={`${0.05 * (i + 1)}s`}>
+              <div key={i} className="h-24 sm:h-28 md:h-32">
                 {s.href ? (
                   <a
                     href={s.href}

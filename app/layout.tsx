@@ -1,7 +1,6 @@
 /** @jsxImportSource react */
 "use client";
 import "./globals.css";
-import "animate.css/animate.min.css";
 import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -27,6 +26,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   const [isOnline, setIsOnline] = React.useState<boolean>(false);
   const [isOnlineReady, setIsOnlineReady] = React.useState<boolean>(false);
   const [isAway, setIsAway] = React.useState<boolean>(false);
+  const pathname = usePathname();
 
   // SEO constants (client-safe NEXT_PUBLIC envs are inlined at build time)
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
@@ -170,102 +170,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       window.removeEventListener("popstate", onPop);
     };
   }, []);
-
-  // Reveal-on-view observer (fadeInUp by default)
-  React.useEffect(() => {
-    if (typeof IntersectionObserver === "undefined") return;
-    // Section-based observer: when a section is visible, reveal all children marked with data-reveal
-    const revealSections = Array.from(document.querySelectorAll<HTMLElement>("[data-reveal-section]"));
-    const sectionObs =
-      revealSections.length > 0
-        ? new IntersectionObserver(
-            (entries) => {
-              entries.forEach((e) => {
-                if (!e.isIntersecting) return;
-                const section = e.target as HTMLElement;
-                const items = Array.from(section.querySelectorAll<HTMLElement>("[data-reveal]:not([data-revealed='1'])"));
-                items.forEach((el) => {
-                  const direction = el.dataset.reveal || "up";
-                  const delay = el.dataset.revealDelay || "";
-                  if (delay) {
-                    el.style.animationDelay = delay;
-                  }
-                  const anim =
-                    direction === "up"
-                      ? "animate__fadeInUp"
-                      : direction === "down"
-                      ? "animate__fadeInDown"
-                      : "animate__fadeIn";
-                  el.classList.add("animate__animated", anim, "animate__fast");
-                  el.style.opacity = "1";
-                  el.dataset.revealed = "1";
-                });
-                sectionObs?.unobserve(section);
-              });
-            },
-            { root: null, rootMargin: "0px 0px 10% 0px", threshold: 0.1 }
-          )
-        : null;
-    revealSections.forEach((sec) => sectionObs?.observe(sec));
-
-    // Fallback: individually reveal standalone elements not inside a section
-    const revealEls = Array.from(document.querySelectorAll<HTMLElement>("[data-reveal]:not([data-revealed='1'])"));
-    const obs = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) {
-            const el = e.target as HTMLElement;
-            const direction = el.dataset.reveal || "up";
-            const delay = el.dataset.revealDelay || "";
-            if (delay) {
-              el.style.animationDelay = delay;
-            }
-            const anim = direction === "up" ? "animate__fadeInUp" : direction === "down" ? "animate__fadeInDown" : "animate__fadeIn";
-            el.classList.add("animate__animated", anim, "animate__fast");
-            el.style.opacity = "1";
-            el.dataset.revealed = "1";
-            obs.unobserve(el);
-          }
-        });
-      },
-      { root: null, rootMargin: "0px 0px 10% 0px", threshold: 0.1 }
-    );
-    // Only observe those not in a reveal-section
-    revealEls
-      .filter((el) => !el.closest("[data-reveal-section]"))
-      .forEach((el) => obs.observe(el));
-    return () => {
-      obs.disconnect();
-      sectionObs?.disconnect();
-    };
-  }, []);
-
   
-
-  // Initialize theme from storage or system preference
-  React.useEffect(() => {
-    try {
-      // const stored = typeof window !== "undefined" ? localStorage.getItem("theme") : null;
-      // const prefersDark =
-      //   typeof window !== "undefined" && window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
-      // const dark = stored ? stored === "dark" : prefersDark;
-      // setIsDark(dark);
-      // if (typeof document !== "undefined") {
-      //   document.documentElement.classList.toggle("dark", dark);
-      // }
-    } catch {
-      // noop
-    }
-    // Splash sequence: animate in, brief hold, then out; total < 3s
-    requestAnimationFrame(() => setSplashIn(true));
-    const outT = setTimeout(() => setSplashOut(true), 1200);
-    const hideT = setTimeout(() => setSplashVisible(false), 2000);
-    return () => {
-      clearTimeout(outT);
-      clearTimeout(hideT);
-    };
-  }, []);
-
   // Compute availability
   React.useEffect(() => {
     function computeOnline() {
@@ -308,10 +213,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     }
   }
 
-  const pathname = usePathname();
   const _parts = (pathname || "/").split("/").filter(Boolean);
   const _first = _parts[0];
   const currentLocale = (_first === "en" ? "en" : "sk") as "sk" | "en";
+  const i18nInstance = ensureI18n();
+  if (i18nInstance.language !== currentLocale) {
+    i18nInstance.changeLanguage(currentLocale);
+  }
   const prefix = currentLocale === "en" ? "/en" : "/sk";
   const slugsEn: Record<"top" | "sessions" | "way-of-life" | "testimonials" | "private-coaching" | "about" | "gallery", string> = {
     top: "",
@@ -333,7 +241,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   };
   const slugs = currentLocale === "en" ? slugsEn : slugsSk;
   const navItems: Array<{ id: "top" | "way-of-life" | "sessions" | "testimonials" | "private-coaching" | "gallery" | "contact" | "about" | "shop"; labelKey: string; href: string, target?: string }> = [
-    { id: "top", labelKey: "nav.home", href: `${prefix}/` },
+    // Use prefix without trailing slash to avoid initial URL normalization causing extra replaceState
+    { id: "top", labelKey: "nav.home", href: prefix || "/" },
     { id: "sessions", labelKey: "nav.sessions", href: `${prefix}/${slugs.sessions}` },
     { id: "way-of-life", labelKey: "nav.wayoflife", href: `${prefix}/${slugs["way-of-life"]}` },
     { id: "testimonials", labelKey: "nav.testimonials", href: `${prefix}/${slugs.testimonials}` },
@@ -342,6 +251,25 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     { id: "gallery", labelKey: "nav.gallery", href: `${prefix}/${slugs.gallery}` },
     // { id: "shop", labelKey: "nav.shop", href: "https://shop.spartans.sk", target: "_blank" },
   ];
+
+  function navigateToSection(id: typeof active, href: string) {
+    if (typeof window === "undefined") return;
+    try {
+      if (window.location.pathname !== href) {
+        window.history.pushState(null, "", href);
+      }
+    } catch {
+      // ignore history errors
+    }
+    const el = document.getElementById(id);
+    if (!el) return;
+    const headerEl = document.querySelector("header");
+    const headerH = headerEl instanceof HTMLElement ? headerEl.offsetHeight : 0;
+    const rect = el.getBoundingClientRect();
+    const top = window.scrollY + rect.top - headerH - 8;
+    // Instant jump (no smooth scrolling animation)
+    window.scrollTo(0, top);
+  }
 
   // Sync URL to section on scroll (smoothly update path without jumping)
   React.useEffect(() => {
@@ -355,6 +283,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       "gallery",
     ];
     const idToPath = new Map<string, string>(navItems.map((n) => [n.id, n.href]));
+    function normalizePath(p: string): string {
+      if (!p) return "/";
+      if (p.length > 1 && p.endsWith("/")) return p.slice(0, -1);
+      return p;
+    }
+
     function computeAndSync() {
       const headerEl = document.querySelector("header");
       const headerH = headerEl instanceof HTMLElement ? headerEl.offsetHeight : 0;
@@ -392,7 +326,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       urlDebounceRef.current = window.setTimeout(() => {
         const id = pendingSectionIdRef.current || "top";
         const desiredPath = idToPath.get(id) || "/";
-        if (window.location.pathname !== desiredPath) {
+        const currentPath = normalizePath(window.location.pathname);
+        const targetPath = normalizePath(desiredPath);
+        if (currentPath !== targetPath) {
           window.history.replaceState(null, "", desiredPath);
         }
         // Ensure active aligns with committed section
@@ -408,7 +344,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     urlDebounceRef.current = window.setTimeout(() => {
       const id = pendingSectionIdRef.current || "top";
       const desiredPath = idToPath.get(id) || "/";
-      if (window.location.pathname !== desiredPath) {
+      const currentPath = normalizePath(window.location.pathname);
+      const targetPath = normalizePath(desiredPath);
+      if (currentPath !== targetPath) {
         window.history.replaceState(null, "", desiredPath);
       }
       if (active !== id) setActive(id);
@@ -498,7 +436,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           />
         </div> */}
         <I18nProvider>
-          <header className="fixed top-0 left-0 right-0 z-[999] backdrop-saturate-150 backdrop-blur bg-white/90 dark:bg-black/60 animate__animated animate__fadeInDown animate_slow md:animate__delay-[300ms]">
+          <header className="fixed top-0 left-0 right-0 z-[999] backdrop-saturate-150 backdrop-blur bg-white/90 dark:bg-black/60">
             <Container className="flex items-center justify-between w-full">
               <div className="flex items-center justify-between gap-4 md:gap-6 py-3">
                 <div className="flex items-center gap-1.5">
@@ -511,25 +449,22 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               </div>
                 <nav className="hidden lg:flex items-center gap-1">
                   {navItems.map((item) => (
-                    <Link
+                    <a
                       key={item.id}
                       href={item.href}
-                      scroll={false}
                       className={`text-md px-3 py-2 rounded-md hover:text-primary ${
                         active === item.id ? "text-primary font-semibold" : "text-muted-foreground hover:text-foreground"
                       }`}
-                      onClick={() => {
-                        if (!item.target) setActive(item.id);
-                        if (item.id === "top") {
-                          try {
-                            window.scrollTo({ top: 0, behavior: "smooth" });
-                          } catch {}
-                        }
+                      onClick={(e) => {
+                        if (item.target) return;
+                        e.preventDefault();
+                        setActive(item.id);
+                        navigateToSection(item.id, item.href);
                       }}
                       target={item.target ?? undefined}
                     >
                       {ensureI18n().t(item.labelKey)}
-                    </Link>
+                    </a>
                   ))}
                 </nav>
               <div className="flex items-center gap-2">
@@ -636,25 +571,21 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <div className="rounded-lg border border-black/10 bg-white shadow-lg p-2">
                   <nav className="flex flex-col">
                     {navItems.map((item) => (
-                      <Link
+                      <a
                         key={item.id}
                         href={item.href}
-                        scroll={false}
                         className={`px-3 py-2 rounded-md ${
                           active === item.id ? "text-foreground font-semibold" : "text-muted-foreground hover:text-foreground hover:bg-black/5"
                         }`}
                         onClick={() => {
+                          if (item.target) return;
                           setActive(item.id);
                           setMobileOpen(false);
-                          if (item.id === "top") {
-                            try {
-                              window.scrollTo({ top: 0, behavior: "smooth" });
-                            } catch {}
-                          }
+                          navigateToSection(item.id, item.href);
                         }}
                       >
                         {ensureI18n().t(item.labelKey)}
-                      </Link>
+                      </a>
                     ))}
                   </nav>
                   <div className="mt-2 flex items-center gap-2">

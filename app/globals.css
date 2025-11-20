@@ -426,10 +426,7 @@ header.site-header {
   font-size: 12px;
   color: var(--color-secondary);
 }
-.reveal-base,
-[data-reveal] {
-  opacity: 0;
-}
+
 .contact {
   margin-top: 12px;
   display: flex;
@@ -463,43 +460,4 @@ footer.site-footer {
   left: 3px;
 }
 
-/* Responsive hero animations (uses animate.css keyframes) */
-.hero-anim-left,
-.hero-anim-right {
-  animation-duration: 650ms;
-  /* animation-delay: 0.2s; */
-  animation-fill-mode: both;
-}
-/* Custom hero keyframes starting at 10% opacity to avoid jumpiness */
-@keyframes heroFadeInLeft {
-  from { opacity: .1; transform: translate3d(-35%, 0, 0); }
-  to { opacity: 1; transform: translateZ(0); }
-}
-@keyframes heroFadeInRight {
-  from { opacity: .1; transform: translate3d(100%, 0, 0); }
-  to { opacity: 1; transform: translateZ(0); }
-}
-@keyframes heroFadeInUp {
-  from { opacity: .5; transform: translate3d(0, 15%, 0); }
-  to { opacity: 1; transform: translateZ(0); }
-}
-@keyframes heroFadeInUpFromZero {
-  from { opacity: 0; transform: translate3d(0, 25%, 0); }
-  to { opacity: 1; transform: translateZ(0); }
-}
-@keyframes heroFadeInDown {
-  from { opacity: .3; transform: translate3d(0, -50%, 0); }
-  to { opacity: 1; transform: translateZ(0); }
-}
-@keyframes heroFadeIn {
-  from { opacity: .3; }
-  to { opacity: 1; }
-}
-/* Mobile default: text down, image simple fade */
-.hero-anim-left { animation-name: heroFadeInUpFromZero; animation-timing-function: ease-out; animation-delay: 100ms;}
-.hero-anim-right { animation-name: heroFadeInUp;  animation-timing-function: ease-out; }
-/* Desktop/tablet: from sides */
-@media (min-width: 768px) {
-  .hero-anim-left { animation-name: heroFadeInLeft; animation-delay: 0ms;}
-  .hero-anim-right { animation-name: heroFadeInRight; }
-}
+/* Hero animation helpers removed – hero is now static */
