@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import { gaEvent } from "../lib/ga";
 
 type Props = {
   triggerLabel: string;
@@ -39,6 +40,7 @@ export default function TrainerContact({
       <div className="flex">
         <a
           href={`tel:${phone}`}
+          onClick={() => gaEvent("cta_click", { cta_name: "call_trainer", location: "trainer_contact", link_url: `tel:${phone}` })}
           className="flex-1 inline-flex items-center justify-center h-10 text-sm border border-black/20 border-r-0 rounded-none bg-transparent hover:bg-black/5 group-hover:bg-primary group-hover:text-primary-foreground group-hover:border-transparent transition-colors"
         >
           {phoneLabel}
@@ -61,13 +63,25 @@ export default function TrainerContact({
           role="menu"
           className="absolute right-0 mt-2 w-44 rounded-md border border-black/10 bg-white shadow-elevation overflow-hidden z-50"
         >
-          <a className="block px-3 py-2 text-sm hover:bg-black/5" href={`tel:${phone}`} role="menuitem">
+          <a
+            className="block px-3 py-2 text-sm hover:bg-black/5"
+            href={`tel:${phone}`}
+            role="menuitem"
+            onClick={() => gaEvent("cta_click", { cta_name: "call_trainer", location: "trainer_contact_menu", link_url: `tel:${phone}` })}
+          >
             {phoneLabel}
           </a>
           <a className="block px-3 py-2 text-sm hover:bg-black/5" href={whatsapp} target="_blank" rel="noreferrer" role="menuitem">
             {whatsappLabel}
           </a>
-          <a className="block px-3 py-2 text-sm hover:bg-black/5" href={instagram} target="_blank" rel="noreferrer" role="menuitem">
+          <a
+            className="block px-3 py-2 text-sm hover:bg-black/5"
+            href={instagram}
+            target="_blank"
+            rel="noreferrer"
+            role="menuitem"
+            onClick={() => gaEvent("social_click", { platform: "instagram", location: "trainer_contact_menu", link_url: instagram })}
+          >
             {instagramLabel}
           </a>
         </div>

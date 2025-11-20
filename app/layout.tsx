@@ -6,6 +6,10 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import I18nProvider from "../components/I18nProvider";
 import LanguageSelector from "../components/LanguageSelector";
+import Analytics from "../components/Analytics";
+import CookieConsent from "../components/CookieConsent";
+import SectionAnalytics from "../components/SectionAnalytics";
+import { gaEvent } from "../lib/ga";
 import { ensureI18n } from "../lib/i18n";
 import Container from "../components/Container";
 
@@ -434,6 +438,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                     rel="noreferrer"
                     aria-label="Instagram"
                     className="inline-flex items-center justify-center w-10 h-10 rounded-md border border-transparent hover:border-black/20 dark:hover:border-white/20 transition-colors text-foreground/70 hover:text-foreground"
+                    onClick={() =>
+                      gaEvent("social_click", {
+                        platform: "instagram",
+                        location: "navbar_desktop",
+                        link_url: "https://instagram.com/spartansclubbratislava",
+                      })
+                    }
                   >
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                       <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" strokeWidth="1.4" />
@@ -447,6 +458,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                     rel="noreferrer"
                     aria-label="Facebook"
                     className="inline-flex items-center justify-center w-10 h-10 rounded-md border border-transparent hover:border-black/20 dark:hover:border-white/20 transition-colors text-foreground/70 hover:text-foreground"
+                    onClick={() =>
+                      gaEvent("social_click", {
+                        platform: "facebook",
+                        location: "navbar_desktop",
+                        link_url: "https://facebook.com/spartansclub.sk",
+                      })
+                    }
                   >
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                       <path d="M14.5 8H16V5h-1.5C12.57 5 11 6.57 11 8.5V10H9v3h2v6h3v-6h2.1l.4-3H14v-1.5c0-.28.22-.5.5-.5Z" fill="currentColor"/>
@@ -458,6 +476,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                     rel="noreferrer"
                     aria-label="TikTok"
                     className="inline-flex items-center justify-center w-10 h-10 rounded-md border border-transparent hover:border-black/20 dark:hover:border-white/20 transition-colors text-foreground/70 hover:text-foreground"
+                    onClick={() =>
+                      gaEvent("social_click", {
+                        platform: "tiktok",
+                        location: "navbar_desktop",
+                        link_url: "https://www.tiktok.com/@spartansclubbratislava",
+                      })
+                    }
                   >
                     <svg width="18" height="18" viewBox="0 0 256 256" aria-hidden="true">
                       <path fill="currentColor" d="M152 24h28c7 19 22 34 41 41v28c-16-1-31-5-45-13v75a76 76 0 1 1-76-76c6 0 12 .7 18 2v28c-5-2-11-3-17-3a48 48 0 1 0 48 48V24Z"/>
@@ -537,6 +562,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                       rel="noreferrer"
                       aria-label="Instagram"
                       className="inline-flex items-center justify-center w-10 h-10 rounded-md border border-transparent hover:border-black/20 transition-colors text-foreground/70 hover:text-foreground"
+                      onClick={() =>
+                        gaEvent("social_click", {
+                          platform: "instagram",
+                          location: "navbar_mobile",
+                          link_url: "https://instagram.com/spartansclubbratislava",
+                        })
+                      }
                     >
                       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                         <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" strokeWidth="1.4" />
@@ -550,6 +582,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                       rel="noreferrer"
                       aria-label="Facebook"
                       className="inline-flex items-center justify-center w-10 h-10 rounded-md border border-transparent hover:border-black/20 transition-colors text-foreground/70 hover:text-foreground"
+                      onClick={() =>
+                        gaEvent("social_click", {
+                          platform: "facebook",
+                          location: "navbar_mobile",
+                          link_url: "https://facebook.com/spartansclubbratislava",
+                        })
+                      }
                     >
                       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                         <path d="M14.5 8H16V5h-1.5C12.57 5 11 6.57 11 8.5V10H9v3h2v6h3v-6h2.1l.4-3H14v-1.5c0-.28.22-.5.5-.5Z" fill="currentColor"/>
@@ -561,6 +600,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                       rel="noreferrer"
                       aria-label="TikTok"
                       className="inline-flex items-center justify-center w-10 h-10 rounded-md border border-transparent hover:border-black/20 transition-colors text-foreground/70 hover:text-foreground"
+                      onClick={() =>
+                        gaEvent("social_click", {
+                          platform: "tiktok",
+                          location: "navbar_mobile",
+                          link_url: "https://www.tiktok.com/@spartansclubbratislava",
+                        })
+                      }
                     >
                       <svg width="18" height="18" viewBox="0 0 256 256" aria-hidden="true">
                         <path fill="currentColor" d="M152 24h28c7 19 22 34 41 41v28c-16-1-31-5-45-13v75a76 76 0 1 1-76-76c6 0 12 .7 18 2v28c-5-2-11-3-17-3a48 48 0 1 0 48 48V24Z"/>
@@ -597,6 +643,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             href={`tel:${ensureI18n().t("about.phone")}`}
             className="fixed bottom-4 right-4 z-[90] flex items-end gap-3"
             aria-label="Call head coach"
+            onClick={() =>
+              gaEvent("cta_click", {
+                cta_name: "call_head_coach",
+                location: "floating_button",
+                link_url: `tel:${ensureI18n().t("about.phone")}`,
+              })
+            }
           >
             <div className="flex items-center gap-2 max-w-[280px] bg-white dark:bg-black border border-black/10 dark:border-white/10 shadow-md rounded-2xl px-3 py-2">
               <span className="inline-flex items-center justify-center shrink-0 w-8 h-8 rounded-full bg-black/5 text-muted-foreground border border-black/10">
@@ -618,6 +671,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </Container>
           </footer> */}
         </I18nProvider>
+        <Analytics />
+        <CookieConsent />
+        <SectionAnalytics />
       </body>
     </html>
   );

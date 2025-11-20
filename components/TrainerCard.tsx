@@ -3,6 +3,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { Card } from "./ui/card";
+import { gaEvent } from "../lib/ga";
  
 
 export type Trainer = {
@@ -59,8 +60,34 @@ export default function TrainerCard({ trainer }: { trainer: Trainer }) {
         <p className="text-sm text-muted-foreground mt-2">{trainer.bio}</p>
       </div>
       <div className="mt-auto pt-3 flex items-center justify-between gap-3 text-sm">
-        <a className="border-b border-dashed border-black/30" href={`tel:${trainer.phone}`}>{trainer.phone}</a>
-        <a className="border-b border-dashed border-black/30 ml-auto" href={trainer.instagramUrl} target="_blank" rel="noreferrer">
+        <a
+          className="border-b border-dashed border-black/30"
+          href={`tel:${trainer.phone}`}
+          onClick={() =>
+            gaEvent("cta_click", {
+              cta_name: "call_trainer",
+              location: "trainer_card",
+              trainer_name: trainer.name,
+              link_url: `tel:${trainer.phone}`,
+            })
+          }
+        >
+          {trainer.phone}
+        </a>
+        <a
+          className="border-b border-dashed border-black/30 ml-auto"
+          href={trainer.instagramUrl}
+          target="_blank"
+          rel="noreferrer"
+          onClick={() =>
+            gaEvent("social_click", {
+              platform: "instagram",
+              location: "trainer_card",
+              trainer_name: trainer.name,
+              link_url: trainer.instagramUrl || "",
+            })
+          }
+        >
           {getInstagramHandle(trainer.instagramUrl, trainer.instagramHandle)}
         </a>
       </div>

@@ -3,6 +3,7 @@
 "use client";
 import React from "react";
 import Link from "next/link";
+import { gaEvent } from "../lib/ga";
 import { useTranslation, Trans } from "react-i18next";
 import Container from "../components/Container";
 import { Button } from "../components/ui/button";
@@ -134,10 +135,17 @@ export default function HomePage() {
               }}
             />
             <div className="flex gap-3 flex-wrap mt-5">
-              <Link href={`${prefix}/${slugSessions}`} scroll={false}>
+              <Link
+                href={`${prefix}/${slugSessions}`}
+                scroll={false}
+                onClick={() => gaEvent("cta_click", { cta_name: "view_sessions", location: "hero", link_url: `${prefix}/${slugSessions}` })}
+              >
                 <Button>{t("hero.cta.sessions")}</Button>
               </Link>
-              <a href={`tel:${t("about.phone")}`}>
+              <a
+                href={`tel:${t("about.phone")}`}
+                onClick={() => gaEvent("cta_click", { cta_name: "call_head_coach", location: "hero", link_url: `tel:${t("about.phone")}` })}
+              >
                 <Button variant="outline" className="inline-flex items-center gap-2">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                     <path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 3.11 5.18 2 2 0 0 1 5.11 3h3a2 2 0 0 1 2 1.72c.12.86.3 1.7.54 2.5a2 2 0 0 1-.45 2.11L9 10a16 16 0 0 0 5 5l.67-1.2a2 2 0 0 1 2.11-.45c.8.24 1.64.42 2.5.54A2 2 0 0 1 22 16.92Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -511,7 +519,10 @@ export default function HomePage() {
             
           </div>
           <div className="mt-6 flex justify-center">
-            <a href={`tel:${t("about.phone")}`}>
+            <a
+              href={`tel:${t("about.phone")}`}
+              onClick={() => gaEvent("cta_click", { cta_name: "call_head_coach", location: "sessions", link_url: `tel:${t("about.phone")}` })}
+            >
               <Button className="px-6 py-3 text-base hover:scale-105 transition-all duration-200">
                 {t("cta.startNow")}
               </Button>
@@ -713,7 +724,11 @@ export default function HomePage() {
               <div className="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <div className="text-xs uppercase tracking-wide text-muted-foreground">{t("about.phoneLabel")}</div>
-                  <a href={`tel:${t("about.phone")}`} className="text-base underline underline-offset-4">
+                  <a
+                    href={`tel:${t("about.phone")}`}
+                    className="text-base underline underline-offset-4"
+                    onClick={() => gaEvent("cta_click", { cta_name: "call_head_coach", location: "about", link_url: `tel:${t("about.phone")}` })}
+                  >
                     {t("about.phone")}
                   </a>
                 </div>
