@@ -14,8 +14,59 @@ export default function CookieConsent() {
   const [visible, setVisible] = React.useState(false);
   React.useEffect(() => {
     const existing = getConsent();
+    // If consent is not explicitly granted, immediately erase GA cookies on load
+    if (existing !== "granted") {
+      eraseGaCookies();
+      try {
+        window.dispatchEvent(new Event("ga-consent"));
+      } catch {
+        // ignore
+      }
+    }
     setVisible(existing === null);
   }, []);
+
+  function deleteCookie(name: string) {
+    try {
+      const domain = window.location.hostname;
+      const past = "Thu, 01 Jan 1970 00:00:00 GMT";
+      // Current path
+      document.cookie = `${name}=; expires=${past}; path=/`;
+      // Explicit domain
+      document.cookie = `${name}=; expires=${past}; path=/; domain=${domain}`;
+      // Dot domain (covers subdomains)
+      document.cookie = `${name}=; expires=${past}; path=/; domain=.${domain}`;
+    } catch {
+      // ignore
+    }
+  }
+
+  function eraseGaCookies() {
+    try {
+      const all = document.cookie.split(";").map((c) => c.trim());
+      const names = all.map((c) => c.split("=")[0]);
+      const toDelete = new Set<string>();
+      names.forEach((n) => {
+        const lower = n.toLowerCase();
+        if (
+          lower === "_ga" ||
+          lower.startsWith("_ga_") ||
+          lower === "_gid" ||
+          lower === "_gat" ||
+          lower.startsWith("_gat_") ||
+          lower.startsWith("_gac_") ||
+          lower.startsWith("_gcl_")
+        ) {
+          toDelete.add(n);
+        }
+      });
+      // Also delete our consent cookies if any legacy keys exist
+      ["ga_consent"].forEach((n) => toDelete.add(n));
+      toDelete.forEach((n) => deleteCookie(n));
+    } catch {
+      // ignore
+    }
+  }
 
   function setConsent(value: "granted" | "denied") {
     try {
@@ -23,6 +74,9 @@ export default function CookieConsent() {
       window.dispatchEvent(new Event("ga-consent"));
     } catch {
       // ignore
+    }
+    if (value === "denied") {
+      eraseGaCookies();
     }
     setVisible(false);
   }
